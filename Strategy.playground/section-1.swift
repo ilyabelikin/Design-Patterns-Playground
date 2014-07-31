@@ -1,9 +1,30 @@
-// OO Design Patterns
-// Strategy: inheritance and interfaces do not work well to make vary parts of code maintainable.
-// First rule: #1 Encapsulate what varies
+//
+// # Motivation
+//
+// Inheritance is not working very well as approach to separate code that 
+// very in bnuch of classes with different behaivor.
+//
+// # Ducks example
+//
+// It feels natural to have Duck base class and inherit every other Duck 
+// form it. It is wroks well for Mallard Duck and Readhead Duck but what 
+// if you add Rubber duck or even Decoy duck? In this case you will need
+// to override methods such as fly() ans quack() in unnatural way.
+//
+// Rubber and Decoy duck classes probably will suffer more and more from
+// heredity when design will evolve with new changes and feture requests.
 
-// Ducks simulator
+// Inheritace express IS-A relation, which is not always the better way
+// to model things. HAS-A relation for vary parts can handle this.
+//
+// # Definition
+//
+// The Strategy pattern defines a family of alghoritms, encapsulate each 
+// one, and makes them interchangable. Strategy lets algoritm vary 
+// independetly from clients that use it.
 
+
+// Interface for "family of alghoritms" that Ducks will use
 protocol FlyBehaivor {
     func fly()
 }
@@ -26,7 +47,7 @@ class FlyNoWay: FlyBehaivor {
     }
 }
 
-
+// And one more "family of alghoritms"
 protocol QuackBehaivor {
     func quack()
 }
@@ -45,11 +66,15 @@ class Squeak: QuackBehaivor {
 
 class Mute: QuackBehaivor {
     func quack()  {
-        println("It is silent")
+        println("Silence.")
     }
 }
 
+
 class Duck {
+
+    // It is variables, because this way we can change behaivor at run time.
+    // It is all for Ducks good, see example of usign below.
     var flyBehaivor: FlyBehaivor
     var quackBehaivor: QuackBehaivor
 
@@ -58,6 +83,9 @@ class Duck {
         quackBehaivor = quackBy
     }
     
+    //
+    // This methods vary, so we delegate them
+    //
     func performFly () {
         flyBehaivor.fly()
     }
@@ -66,6 +94,9 @@ class Duck {
         quackBehaivor.quack()
     }
     
+    //
+    // This methods works well for all kind of ducks
+    //
     func swim () {
         println("It swims")
     }
