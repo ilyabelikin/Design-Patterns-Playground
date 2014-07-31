@@ -8,10 +8,13 @@ protocol QuarterMachine {
     func ejectQuarter ()
     func turnCrank ()
     func despense ()
+    func refilled ()
 }
 
 class GumballMachineState: QuarterMachine {
+
     let machine: GumballMachine
+    
     init (_ machine: GumballMachine){
         self.machine = machine
     }
@@ -31,7 +34,10 @@ class GumballMachineState: QuarterMachine {
     func despense() {
         print(" ... ")
     }
-
+    
+    func refilled()  {
+        print("Machine refilled")
+    }
 }
 
 class SoldOutState: GumballMachineState {
@@ -55,6 +61,10 @@ class SoldOutState: GumballMachineState {
         super.despense()
         print("No Gunballs.")
     }
+    
+    override func refilled() {
+        machine.state = NoQuarterState(machine)
+    }
 }
 
 class NoQuarterState: GumballMachineState {
@@ -62,7 +72,7 @@ class NoQuarterState: GumballMachineState {
     override func insertQuarter() {
         super.insertQuarter()
         println("inserted.")
-        machine.state = .HasQuarter
+        machine.state = HasQuarterState(machine)
     }
     
     override func ejectQuarter() {
@@ -91,13 +101,13 @@ class HasQuarterState: GumballMachineState {
     override func ejectQuarter() {
         super.ejectQuarter()
         println("your quarter back!")
-        machine.state = .NoQuarter
+        machine.state = NoQuarterState(machine)
     }
     
     override func turnCrank() {
         super.turnCrank()
         print("crrck!")
-         machine.state = .Sold
+         machine.state = SoldState(machine)
     }
     
     override func despense() {
@@ -125,105 +135,49 @@ class SoldState: GumballMachineState {
     override func despense() {
         super.despense()
         println("Gunball!")
-        machine.state = .NoQuarter
+        machine.state = NoQuarterState(machine)
         machine.gunballs--
-        if machine.gunballs <= 0 {
-            println("You are the last costumer, turn crank again to get extra!")
-            machine.state = .LastExtra
-        }
     }
-}
-
-class LastExtraState: GumballMachineState {
-    
-    override func insertQuarter() {
-        super.insertQuarter()
-        println("no need! Just turn the crank.")
-    }
-    
-    override func ejectQuarter() {
-        super.ejectQuarter()
-        println("nothing.")
-    }
-    
-    override func turnCrank() {
-        super.turnCrank()
-        print("zrrpuuu!")
-    }
-    
-    override func despense() {
-        super.despense()
-        println("a Toy for you!")
-        machine.state = .SoldOut
-
-    }
-}
-
-enum QuarterMachineStates {
-    case TurnedOff, SoldOut, NoQuarter, HasQuarter, Sold, LastExtra
 }
 
 class GumballMachine: QuarterMachine {
-    var state: QuarterMachineStates = .NoQuarter {
-        willSet {
-            switch newValue {
-                case .TurnedOff:
-                    self.stateHandler = nil
-                case .SoldOut:
-                    self.stateHandler = SoldOutState(self)
-                case .NoQuarter:
-                    self.stateHandler = NoQuarterState(self)
-                case .HasQuarter:
-                    self.stateHandler = HasQuarterState(self)
-                case .Sold:
-                    self.stateHandler = SoldState(self)
-                case .LastExtra:
-                    self.stateHandler = LastExtraState(self)
-            }
-        }
-    }
     
-    var stateHandler: GumballMachineState?
-    
+    var state: QuarterMachine?
     var gunballs = 0
     
     init (numberOfGunballs: Int) {
-        gunballs = numberOfGunballs
-    }
-    
-    func turnOnMachine () {
-        if gunballs > 0 {
-            state = .NoQuarter
-        } else {
-            state = .SoldOut
-        }
+        self.gunballs = numberOfGunballs
     }
     
     func insertQuarter() {
-        stateHandler?.insertQuarter()
+        state?.insertQuarter()
     }
     
     func ejectQuarter() {
-        stateHandler?.ejectQuarter()
+        state?.ejectQuarter()
     }
     
     func turnCrank() {
-        stateHandler?.turnCrank()
-        stateHandler?.despense()
+        state?.turnCrank()
+        state?.despense()
     }
     
     func despense() {
         println("Be good. Pay and use crank if you want a gumball")
     }
     
+    func refilled() {
+        state?.refilled()
+    }
+    
     func refill(numberOfGumballs: Int) {
         self.gunballs  += numberOfGumballs
-        self.state = .TurnedOff
+        refilled()
     }
 }
 
 let machine = GumballMachine(numberOfGunballs: 10)
-machine.turnOnMachine()
+machine.state = NoQuarterState(machine)
 
 machine.despense()
 

@@ -19,9 +19,40 @@
 // The State Pattern allows an object to alert its behaivor when its 
 // internal state change. The object will appear to change its class.
 //
-// # Examples
-// ## Gumball machine
+// # Gumball machine example
+//
+// ## Tidly coupled approach
 
+class GodGunballMachnie {
+    
+    enum States { case SoldOut, NoQuarter, HasQuarter, Sold }
+    var state : States = .NoQuarter
+    
+    func inserQuarter () {
+        print("You are going to insert Quarter... ")
+        
+        switch state {
+            case .SoldOut:
+                println("No way. It sold out!")
+            case .NoQuarter:
+                self.state = .HasQuarter
+                println("inserted.")
+            case .HasQuarter:
+                println("no way. There are quarter in place.")
+            case .Sold:
+                println("no way.")
+        }
+    }
+    
+    // And the same structure for all machine methods.
+    
+    // To add any new state you will need to open this class
+    // and modify each switch statement.
+}
+
+// ## Decoupled approach
+
+// Interface for machine and all states classes
 protocol QuarterMachine {
     func insertQuarter ()
     func ejectQuarter ()
@@ -29,6 +60,7 @@ protocol QuarterMachine {
     func despense ()
 }
 
+// Base class for states of machine
 class GumballMachineState: QuarterMachine {
     
     let machine: GumballMachine
@@ -98,7 +130,6 @@ class NoQuarterState: GumballMachineState {
     override func turnCrank() {
         super.turnCrank()
         println("nothing.")
-        
     }
     
     override func despense() {
@@ -153,46 +184,17 @@ class SoldState: GumballMachineState {
         println("Gunball!")
         machine.state = machine.noQuarterState
         machine.gunballs--
-        if machine.gunballs <= 0 {
-            println("You are the last costumer, turn crank again to get extra!")
-            machine.state = LastExtraState(machine)
-        }
     }
 }
-
-class LastExtraState: GumballMachineState {
-    
-    override func insertQuarter() {
-        super.insertQuarter()
-        println("no need! Just turn the crank.")
-    }
-    
-    override func ejectQuarter() {
-        super.ejectQuarter()
-        println("nothing.")
-    }
-    
-    override func turnCrank() {
-        super.turnCrank()
-        print("zrrpuuu!")
-    }
-    
-    override func despense() {
-        super.despense()
-        println("a Toy for you!")
-    }
-}
-
 
 class GumballMachine: QuarterMachine {
-
+    
     let soldOutState: SoldOutState!
     let noQuarterState: NoQuarterState!
     let hasQuarterState: HasQuarterState!
     let soldState: SoldState!
-    
+
     var state: GumballMachineState!
-    
     var gunballs = 0
     
     init (numberOfGunballs: Int) {
@@ -232,9 +234,7 @@ class GumballMachine: QuarterMachine {
     }
 }
 
-let machine = GumballMachine(numberOfGunballs: 10)
-
-// Click on plus next to return value to see console in assistant editor
+let machine = GumballMachine(numberOfGunballs: 10) // Click on plus next to return value to see console in assistant editor
 
 machine.despense()
 
