@@ -234,7 +234,8 @@ class GumballMachine: QuarterMachine {
     }
 }
 
-let machine = GumballMachine(numberOfGunballs: 10) // Click on plus next to return value to see console in assistant editor
+// Click on plus next to return value to see console in assistant editor
+let machine = GumballMachine(numberOfGunballs: 10)
 
 machine.despense()
 

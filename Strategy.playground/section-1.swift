@@ -130,6 +130,7 @@ class DecoyDuck: Duck {
     }
 }
 
+// Click on plus next to return value to see console in assistant editor
 let red = RedheadDuck(flyBy: FlyWithWings(), quackBy: Quack())
 let rubber = RubberDuck(flyBy: FlyNoWay(), quackBy: Squeak())
 let decoy = DecoyDuck(flyBy: FlyNoWay(), quackBy: Mute())

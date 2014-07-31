@@ -1,7 +1,13 @@
-// OO Design Patterns
-// Factory
+//
+// TODO: Motivation
+//
+// # Definition
+//
+// The Factory Method Pattern defines an interface for  creating an object, 
+// but lets subclasses decide wich class to instantiate. Factory Method 
+// lets a class defer instantiation to subclasses.
 
-// Simple pizza factory
+// # Simple pizza factory example
 
 protocol Pizza {
     func describe ()
@@ -66,4 +72,4 @@ store.orderPizza("Hawai")
 store.orderPizza("Peperoni")
 store.orderPizza("Margarita")
 
-// The Factory Method Pattern defines an interface for  creating an object, but lets subclasses decide wich class to instantiate. Factory Method lets a class defer instantiation to subclasses.
+

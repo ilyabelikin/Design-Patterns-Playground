@@ -1,13 +1,18 @@
-// OO Design Patterns
-// Decorator: attahces additional responsobilities to an object dynamicly. Provide a flrxiable alternative to subclassing for extending functionality.
+// 
+// # Motivation
+//
+// TODO: Explain sad truth
+//
+// Classes should be open for extension, but close for modification.
+//
+// # Definition
+// 
+// The Decorator pattern attahces additional responsobilities to an object
+// dynamicly. Provide a flrxiable alternative to subclassing for extending
+// functionality.
 
-// #5 Classes should be open for extension, but close for modification.
+// # Coffe shop example
 
-// Coffe shop
-
-
-// I used protocol insted of inheritance,
-// becasue it fells much more natural in Swift
 
 protocol Beverage: Printable {
     func cost() -> Double
