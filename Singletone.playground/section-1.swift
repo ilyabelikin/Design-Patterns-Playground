@@ -1,27 +1,45 @@
-// OO Design Patterns
-// Singletone: ensures a class has only one instance and provides a global access point to it
+//
+// # Motivation
+//
+// In many cases you need an object that should exist as one and only one
+// because of it nature. Like an object which represent configuration file,
+// hardware device or data storage.
+//
+// # Definition
+//
+// Singleton pattern ensures a class has only one instance and provides
+// a global access point to it.
+//
 
-class Singletone {
+class Singleton {
     
-    class var sharedInstance: Singletone {
-        
+    var data = 0
+    
+    // Class constant is not supported yet in beta4
+    class var sharedInstance: Singleton {
         struct Static {
-            static let instance = Singletone()
+            // Constant in Swift thread safe by desing, internaly 
+            // it works like if dispatch_once applied
+            static let instance = Singleton()
         }
         return Static.instance
     }
-    
-    
-    private init () {
-        // TODO: I hope will be a way to use class let istead and pervent new instance here
-    }
-
-    var data = 0
+ 
+    private init () { }
 }
 
-let singletone = Singletone.sharedInstance
-singletone.data = 1
+let object = Singleton.sharedInstance
+object.data = 1
 
-let sameOne = Singletone.sharedInstance
+let sameObject = Singleton.sharedInstance
+sameObject.data = 42
 
-let otherOne = Singletone()
+object.data
+
+if Singleton.sharedInstance === object {
+    "Ok, it is totally the same thing"
+}
+
+//
+// TODO: Update when class constant will be implemented in Swift
+// 
