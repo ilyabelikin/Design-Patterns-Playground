@@ -22,7 +22,7 @@
 // The Strategy pattern defines a family of alghoritms, encapsulate each 
 // one, and makes them interchangable. Strategy lets algoritm vary 
 // independetly from clients that use it.
-
+//
 
 // Interface for "family of alghoritms" that Ducks will use
 protocol FlyBehaivor {
@@ -47,7 +47,7 @@ class FlyNoWay: FlyBehaivor {
     }
 }
 
-// And one more "family of alghoritms"
+// And one more "family of alghoritms" for ducks
 protocol QuackBehaivor {
     func quack()
 }
@@ -73,7 +73,7 @@ class Mute: QuackBehaivor {
 
 class Duck {
 
-    // It is variables, because this way we can change behaivor at run time.
+    // It is variables, because this way we can change behaivors at run time.
     // It is all for Ducks good, see example of usign below.
     var flyBehaivor: FlyBehaivor
     var quackBehaivor: QuackBehaivor
@@ -83,9 +83,9 @@ class Duck {
         quackBehaivor = quackBy
     }
     
-    //
+    
     // This methods vary, so we delegate them
-    //
+    
     func performFly () {
         flyBehaivor.fly()
     }
@@ -94,9 +94,9 @@ class Duck {
         quackBehaivor.quack()
     }
     
-    //
-    // This methods works well for all kind of ducks
-    //
+    
+    // This methods works well for all kind of ducks, so we just inherit them
+    
     func swim () {
         println("It swims")
     }
@@ -131,6 +131,7 @@ class DecoyDuck: Duck {
 }
 
 // Click on plus next to return value to see console in assistant editor
+
 let red = RedheadDuck(flyBy: FlyWithWings(), quackBy: Quack())
 let rubber = RubberDuck(flyBy: FlyNoWay(), quackBy: Squeak())
 let decoy = DecoyDuck(flyBy: FlyNoWay(), quackBy: Mute())
