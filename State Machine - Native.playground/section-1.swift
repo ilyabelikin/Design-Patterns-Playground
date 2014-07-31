@@ -1,10 +1,7 @@
-// OO Design Patterns
-// State machine
-
-// The State Pattern allows an object to alert its behaivor when its 
-// internal state change. The object will appear to change its class.
-
-// Gumball machine: classical approach
+//
+// Gumballs machine example using enum to manage states
+// I belive this approach a little more native in Swift
+//
 
 protocol QuarterMachine {
     func insertQuarter ()
@@ -18,25 +15,26 @@ class GumballMachineState: QuarterMachine {
     init (_ machine: GumballMachine){
         self.machine = machine
     }
+    
     func insertQuarter() {
         print("You are going to insert Quarter... ")
-        
     }
+    
     func ejectQuarter() {
         print("You are pushing eject button... ")
-        
     }
+    
     func turnCrank() {
         print("You are turning crnak... ")
-        
     }
+    
     func despense() {
         print(" ... ")
     }
 
 }
 
-class SoldOutState:GumballMachineState {
+class SoldOutState: GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
@@ -63,14 +61,17 @@ class NoQuarterState: GumballMachineState {
         println("inserted.")
         machine.state = .HasQuarter
     }
+    
     override func ejectQuarter() {
         super.ejectQuarter()
         println("nothing.")
     }
+    
     override func turnCrank() {
         super.turnCrank()
         println("nothing.")
     }
+    
     override func despense() {
         super.despense()
         println("No way. Put you quarter inside first.")
@@ -83,16 +84,19 @@ class HasQuarterState: GumballMachineState {
         super.insertQuarter()
         println("no way. There are quarter in place.")
     }
+    
     override func ejectQuarter() {
         super.ejectQuarter()
         println("your quarter back!")
         machine.state = .NoQuarter
     }
+    
     override func turnCrank() {
         super.turnCrank()
         print("crrck!")
          machine.state = .Sold
     }
+    
     override func despense() {
         super.despense()
     }
@@ -104,14 +108,17 @@ class SoldState: GumballMachineState {
         super.insertQuarter()
         println("nothing.")
     }
+    
     override func ejectQuarter() {
         super.ejectQuarter()
         println("nothing.")
     }
+    
     override func turnCrank() {
         super.turnCrank()
         println("nothing.")
     }
+    
     override func despense() {
         super.despense()
         println("Gunball!")
@@ -130,14 +137,17 @@ class LastExtraState: GumballMachineState {
         super.insertQuarter()
         println("no need! Just turn the crank.")
     }
+    
     override func ejectQuarter() {
         super.ejectQuarter()
         println("nothing.")
     }
+    
     override func turnCrank() {
         super.turnCrank()
         print("zrrpuuu!")
     }
+    
     override func despense() {
         super.despense()
         println("a Toy for you!")
