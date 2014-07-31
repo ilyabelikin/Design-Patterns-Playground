@@ -156,4 +156,6 @@ println()
 decoy.display()
 decoy.swim()
 decoy.performQuack()
-decoy.performFly()  
+decoy.performFly()
+
+// This playground based on example from http://www.lynda.com/Developer-Programming-Foundations-tutorials/Foundations-Programming-Design-Patterns/135365-2.html
