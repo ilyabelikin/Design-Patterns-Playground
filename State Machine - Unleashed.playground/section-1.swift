@@ -1,6 +1,6 @@
 //
-// Gumballs machine example using enum to manage states.
-// I belive this approach a little more native in Swift.
+// Gumballs machine exmaple when machine have no idea about it's own 
+// possible states.
 //
 
 protocol QuarterMachine {

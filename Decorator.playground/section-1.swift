@@ -7,11 +7,11 @@
 //
 // # Definition
 // 
-// The Decorator pattern attahces additional responsobilities to an object
-// dynamicly. Provide a flrxiable alternative to subclassing for extending
+// The Decorator pattern attaches additional responsibilities to an object
+// dynamically. Provide a flexible alternative to subclassing for extending
 // functionality.
 
-// # Coffe shop example
+// # Coffee shop example
 
 
 protocol Beverage: Printable {
