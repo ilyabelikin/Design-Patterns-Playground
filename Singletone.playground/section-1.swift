@@ -42,4 +42,9 @@ if Singleton.sharedInstance === object {
 
 //
 // TODO: Update when class constant will be implemented in Swift
-// 
+//
+// TODO: Many times I heard that singleton pattern is a bad thing
+// be it nature or, at least, because of overuse. It will be great 
+// to provide realistic example and explanation when it is the case.
+// Someone?
+//
