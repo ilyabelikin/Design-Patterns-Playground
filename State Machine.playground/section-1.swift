@@ -5,23 +5,23 @@
 // by Alexandros Salazar
 // Read whole post: http://nomothetis.svbtle.com/immutable-swift
 //
-// Any program manage states and, idealy, should be exhaustive. In other words
-// proigrm should have a correct behaivor for any combination of states. 
+// Any program manage states and, ideally, should be exhaustive. In other 
+// words a program should have a correct behavior for any combination of states.
 // This way we will have bug-free software. So... we now it is not the case.
 //
-// In practice it is quite usual when program manage only subset of possiable
-// states and even do not express awarness about possiable states of underling
-// object in explicid way. It is just in bunches of if and else statments all 
-// over a sorce code.
+// In practice it is quite usual when program manage only subset of possible
+// states and even do not express awareness about possible states of underling
+// object in explicit way. It is just in bunches of if and else statements all
+// over a source code.
 //
 // # Definition
 //
-// The State Pattern allows an object to alert its behaivor when its 
+// The State Pattern allows an object to alert its behavior when its
 // internal state change. The object will appear to change its class.
 //
 // # Gumball machine example
 //
-// ## Tidly coupled approach
+// ## Tidilly coupled approach
 
 class GodGunballMachnie {
     

@@ -2,27 +2,27 @@
 // # Motivation
 //
 // Inheritance is not working very well as approach to separate code that 
-// very in bnuch of classes with different behaivor.
+// very in bunch of classes with different behavior.
 //
 // # Ducks example
 //
 // It feels natural to have parent class Duck and inherit every other type 
-// of duck form it. It wroks well for Mallard Duck and Readhead Duck but 
+// of duck form it. It works well for Mallard Duck and Redhead Duck but
 // what if you someday will need to add Rubber duck or even Decoy duck? 
-// In this case you will need to override methods such as fly() ans quack() 
+// In this case you will need to override methods such as fly() and quack()
 // in unnatural way.
 //
 // Rubber and Decoy duck classes probably will suffer more and more from
 // heredity when design will evolve with new changes and features requests.
 
-// Inheritace express IS-A relation, which is not always the better way
+// Inheritance express IS-A relation, which is not always the better way
 // to model things. HAS-A relation for vary parts ca be a better choice.
 //
 // # Definition
 //
-// The Strategy pattern defines a family of alghoritms, encapsulate each 
-// one, and makes them interchangable. Strategy lets algoritm vary 
-// independetly from clients that use it.
+// The Strategy pattern defines a family of algorithms, encapsulate each
+// one, and makes them interchangeable. Strategy lets algorithm vary
+// independently from clients that use it.
 //
 
 // Interface for "family of alghoritms" that Ducks will use
