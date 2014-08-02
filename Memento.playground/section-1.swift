@@ -1,8 +1,8 @@
 //
 // # Motivation
 //
-// Apperentlym, badly desier an ability to undo object state without 
-// violate incapsulation
+// Apparently, badly desire for an ability to undo object state without
+// violate incapsulation.
 //
 // # Definition
 //
