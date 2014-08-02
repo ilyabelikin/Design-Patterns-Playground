@@ -6,16 +6,17 @@
 //
 // # Ducks example
 //
-// It feels natural to have Duck base class and inherit every other Duck 
-// form it. It is wroks well for Mallard Duck and Readhead Duck but what 
-// if you add Rubber duck or even Decoy duck? In this case you will need
-// to override methods such as fly() ans quack() in unnatural way.
+// It feels natural to have parent class Duck and inherit every other type 
+// of duck form it. It wroks well for Mallard Duck and Readhead Duck but 
+// what if you someday will need to add Rubber duck or even Decoy duck? 
+// In this case you will need to override methods such as fly() ans quack() 
+// in unnatural way.
 //
 // Rubber and Decoy duck classes probably will suffer more and more from
-// heredity when design will evolve with new changes and feture requests.
+// heredity when design will evolve with new changes and features requests.
 
 // Inheritace express IS-A relation, which is not always the better way
-// to model things. HAS-A relation for vary parts can handle this.
+// to model things. HAS-A relation for vary parts ca be a better choice.
 //
 // # Definition
 //
