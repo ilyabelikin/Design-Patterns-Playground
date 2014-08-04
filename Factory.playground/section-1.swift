@@ -3,31 +3,71 @@
 //
 // # Definition
 //
-// The Factory Method Pattern defines an interface for  creating an object, 
+// The Factory Method Pattern defines an interface for creating an object,
 // but lets subclasses decide which class to instantiate. Factory Method 
 // lets a class defer instantiation to subclasses.
 
 // # Simple pizza factory example
 
-protocol Pizza {
-    func describe ()
-}
 
-class PeperoniPizza: Pizza {
-    func describe() {
-        println("Nice Peperoni Pizza")
+class Pizza {
+    
+    let name = String()
+    
+    enum Dough: String { case Thin = "thin", Thick = "thick" }
+    var dough = Dough.Thin
+    
+    var souce = String()
+    var toppings = [String]()
+    
+    func prepare() {
+        println("Preparing \(name)")
+    }
+    
+    func bake() {
+        println("Bake \(name): \(toppings) on \(dough.toRaw()) dough")
+    }
+    
+    func cut() {
+        println("Cutting \(name)")
+    }
+    
+    func box() {
+        println("Boxing \(name)")
     }
 }
 
+class PeperoniPizza: Pizza {
+    override var name: String {
+        get { return "Peperoni Pizza"}
+    }
+    
+    init() {
+        super.init()
+        toppings = ["Papeeroni", "Onoion", "Cherry", "Chedar"]
+    }
+    
+}
+
 class HawaiPizza: Pizza {
-    func describe() {
-        println("Great Hawai Pizza")
+    override var name: String {
+        get { return "Hawai Pizza"}
+    }
+    
+    init() {
+        super.init()
+        toppings = ["Pinaple", "Ham", "Onion", "Mozarella"]
     }
 }
 
 class MargaritaPizza: Pizza {
-    func describe() {
-        println("Classic Margarita Pizza")
+    override var name: String {
+        get { return "Margarita Pizza"}
+    }
+    
+    init() {
+        super.init()
+        toppings = ["Mozarella"]
     }
 }
 
@@ -56,12 +96,14 @@ class PizzaStore {
     func orderPizza(type: String) {
         println("You just ordered a \(type) pizza.")
         if let pizza = pizzaFactory.createPizza(type) {
-            println("Ok. Wait a second, please...")
-            pizza.describe()
-            println()
+            println("Ok. Will be in 20 minutes...")
+            pizza.prepare()
+            pizza.bake()
+            pizza.cut()
+            pizza.box()
+            println("Here you are: \(pizza.name)\n")
         } else {
-            println("Sorry, we have no \(type)")
-            println()
+            println("Sorry, we have no \(type)\n")
         }
     }
 }
