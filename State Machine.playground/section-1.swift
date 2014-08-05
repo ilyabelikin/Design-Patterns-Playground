@@ -184,6 +184,9 @@ class SoldState: GumballMachineState {
         println("Gunball!")
         machine.state = machine.noQuarterState
         machine.gunballs--
+        if machine.gunballs <= 0 {
+            machine.state = machine.soldOutState
+        }
     }
 }
 
