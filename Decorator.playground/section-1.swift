@@ -30,7 +30,7 @@ class HouseBlend: Beverage {
 }
 
 class Espresso: Beverage {
-   
+
     var description : String {
         return "Espresso"
     }

@@ -31,7 +31,6 @@ class GumballMachineState: QuarterMachine {
     func despense() {
         print(" ... ")
     }
-
 }
 
 class SoldOutState: GumballMachineState {
