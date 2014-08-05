@@ -42,7 +42,7 @@ class PeperoniPizza: Pizza {
         get { return "Peperoni Pizza"}
     }
     
-    init() {
+    override init() {
         super.init()
         toppings = ["Papeeroni", "Onoion", "Cherry", "Chedar"]
     }
@@ -54,7 +54,7 @@ class HawaiPizza: Pizza {
         get { return "Hawai Pizza"}
     }
     
-    init() {
+    override init() {
         super.init()
         toppings = ["Pinaple", "Ham", "Onion", "Mozarella"]
     }
@@ -65,7 +65,7 @@ class MargaritaPizza: Pizza {
         get { return "Margarita Pizza"}
     }
     
-    init() {
+    override init() {
         super.init()
         toppings = ["Mozarella"]
     }
