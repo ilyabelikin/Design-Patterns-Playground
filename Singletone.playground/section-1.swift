@@ -64,14 +64,14 @@ let myCard = CreditCard(cardNumber: 1234_5678_9012_3456) // Sometimes fake error
 myCard.charge(100)
 
 // This call will fire few other object and database, which is not
-// obvious form API it expose. And which makes it hard to mock 
-// this other objects in tests.
+// obvious form exposed API. And which makes it hard to mock this 
+// other objects in tests.
 // 
 // Sidenote: it looks like there are a lot of software which relay on 
 // global states to make overall design easy and then put additional 
 // efforts to make it testable. At least in 2008 Rails was like that... 
-// and it was a huge success. Which is not make it an example of 
-// good software design, ofcourse.
+// and it was a huge success. Which is not make it an example of good 
+// software design, ofcourse. But make a point abot pragmatism.
 //
 // Sidenote: It feels like if I need to call init() (as it is in original
 // post) to use Singleton it is wrong using of pattern in a first place. 
@@ -101,7 +101,7 @@ class CreditCardProcessor {
     
     func proceesCharge(card: CreditCard, amount: Double) {
         let queue = OfflineQueue.sharedInstance
-        queue.registreTransaction()
+        queue.registerTransaction()
         println("Thank you, your credit card $\(amount) less.")
     }
 }
@@ -114,8 +114,8 @@ class OfflineQueue {
     
     let db = Database.sharedInstance
 
-    func registreTransaction() {
-        db.connect()
+    func registerTransaction() {
+        db.connect() // ok, now it change global state
         println("Registre transaction")
     }
 }
@@ -131,7 +131,7 @@ class Database {
     }
     
     func connect () {
-        println("Connect to database")
+        println("Connect to database")s
     }
 }
 
@@ -139,4 +139,12 @@ class Database {
 // More about it from the same author
 // http://misko.hevery.com/2008/08/21/where-have-all-the-singletons-gone/
 // http://misko.hevery.com/2008/08/25/root-cause-of-singletons/
+//
+// Classical post on the subject
+// http://web.archive.org/web/20120221103151/http://sites.google.com/site/steveyegge2/singleton-considered-stupid
+
+//
+// TODO: How to avoid to use Singleton for Store in case when Storyboard
+// instanciate controllers for you and it looks like you have no place 
+// to pass a reference to Store?
 //
