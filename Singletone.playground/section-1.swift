@@ -67,15 +67,15 @@ myCard.charge(100)
 // obvious form API it expose. And which makes it hard to mock 
 // this other objects in tests.
 // 
-// Sidenote: ok, but it looks like there are a lot of software which
-// relay on global state to make overall design easy and then just
-// but additional efforts to make it testable too. At least in 2008 Rails
-// was like that... and it was a huge succed. Which is not made them an
-// example of software design, ofcourse.
+// Sidenote: it looks like there are a lot of software which relay on 
+// global states to make overall design easy and then put additional 
+// efforts to make it testable. At least in 2008 Rails was like that... 
+// and it was a huge success. Which is not make it an example of 
+// good software design, ofcourse.
 //
 // Sidenote: It feels like if I need to call init() (as it is in original
 // post) to use Singleton it is wrong using of pattern in a first place. 
-// Or I just need to improve my example to be a litle bit more real.
+// Or I just need to improve my example to make it a litle bit more real.
 //
 // TODO: Improve this one or make a better example.
 //
