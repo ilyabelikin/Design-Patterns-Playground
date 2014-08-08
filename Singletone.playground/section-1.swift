@@ -50,24 +50,34 @@ if Singleton.sharedInstance === object {
 }
 
 //
-// # Why it is a bad thing
+// # Overuse
 //
-// # Singletone hide dependencies
+// In case of overuse everithing will be glue up to a global
+// state and it will make overall design simpler, but in the same
+// time, much harder to test and change in any way.
+//
 // http://misko.hevery.com/2008/08/17/singletons-are-pathological-liars/
 //
+// # Credit card example
 
-// If I understand it right, idea is that newcomers on a project can not 
-// expect that CreditCard.cgharge() will fire chain of dependencies, and
-
-let myCard = CreditCard(cardNumber: 1234_5678_9012_3456) // Fake error in beta5
+let myCard = CreditCard(cardNumber: 1234_5678_9012_3456) // Sometimes fake error in beta5
 myCard.charge(100)
 
-// will do somthing in database. Because is not cleat from API.
-
-// Hm... I belive I see the point, you need explicid dependencies to 
-// mock stuff for tests, but what else newcomer actually expect?
+// This call will fire few other object and database, which is not
+// obvious form API it expose. And which makes it hard to mock 
+// this other objects in tests.
+// 
+// Sidenote: ok, but it looks like there are a lot of software which
+// relay on global state to make overall design easy and then just
+// but additional efforts to make it testable too. At least in 2008 Rails
+// was like that... and it was a huge succed. Which is not made them an
+// example of software design, ofcourse.
 //
-// TODO: Nedded a better example. Anyone?
+// Sidenote: It feels like if I need to call init() (as it is in original
+// post) to use Singleton it is wrong using of pattern in a first place. 
+// Or I just need to improve my example to be a litle bit more real.
+//
+// TODO: Improve this one or make a better example.
 //
 
 class CreditCard {
@@ -104,13 +114,24 @@ class OfflineQueue {
     
     let db = Database.sharedInstance
 
-    func registreTransaction() { }
+    func registreTransaction() {
+        db.connect()
+        println("Registre transaction")
+    }
 }
 
 class Database {
     class var sharedInstance: Database {
     struct Static { static let instance = Database() }
         return Static.instance
+    }
+    
+    init () {
+        println("Init database model")
+    }
+    
+    func connect () {
+        println("Connect to database")
     }
 }
 
