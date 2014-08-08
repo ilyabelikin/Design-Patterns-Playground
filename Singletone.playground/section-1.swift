@@ -1,16 +1,23 @@
 //
 // # Motivation
 //
-// In many cases you need an object that should exist as one and only one
-// because of it nature. Like an object which represent configuration file,
-// hardware device or data storage.
+// In many cases you can feel craving for an object which should exist
+// as one and only one and be accesable whenever you want it. Classical
+// examples is a configuration file, logging tool, hardware device 
+// or data storage.
+//
+// Singleton feels very natural and simple to adopt, so there are 
+// tendency to overuse it. Pattern of relation with this pattern looks
+// like: first use, love, love, love, big project, hate, hate, hate, 
+// post in blog why you should never ever use it.
 //
 // # Definition
 //
 // Singleton pattern ensures a class has only one instance and provides
 // a global access point to it.
 //
-
+// # Implementation
+//
 class Singleton {
     
     var data = 0
@@ -43,14 +50,7 @@ if Singleton.sharedInstance === object {
 }
 
 //
-//
-// TODO: # Practice
-//
-// Many times I heard that singleton pattern is a bad thing because
-// of its nature or, at least, because tendecy to overuse it. Somehow 
-// this topic polarize communities, so I like to collect simple practical 
-// examples here to illustrate props and cons people are talking about.
-//
+// # Why it is a bad thing
 //
 // # Singletone hide dependencies
 // http://misko.hevery.com/2008/08/17/singletons-are-pathological-liars/
@@ -66,6 +66,9 @@ myCard.charge(100)
 
 // Hm... I belive I see the point, you need explicid dependencies to 
 // mock stuff for tests, but what else newcomer actually expect?
+//
+// TODO: Nedded a better example. Anyone?
+//
 
 class CreditCard {
     var number: Int
@@ -110,3 +113,9 @@ class Database {
         return Static.instance
     }
 }
+
+//
+// More about it from the same author
+// http://misko.hevery.com/2008/08/21/where-have-all-the-singletons-gone/
+// http://misko.hevery.com/2008/08/25/root-cause-of-singletons/
+//
