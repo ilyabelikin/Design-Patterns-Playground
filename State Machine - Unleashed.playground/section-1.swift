@@ -2,6 +2,7 @@
 // Gumballs machine exmaple when machine have no idea about it's own 
 // possible states.
 //
+// TODO: Probably better to make all states a Singleton in this case?
 
 protocol QuarterMachine {
     func insertQuarter ()
@@ -59,7 +60,7 @@ class SoldOutState: GumballMachineState {
     
     override func despense() {
         super.despense()
-        print("No Gunballs.")
+        print("No Gunballs.\n")
     }
     
     override func refilled() {
@@ -135,8 +136,14 @@ class SoldState: GumballMachineState {
     override func despense() {
         super.despense()
         println("Gunball!")
-        machine.state = NoQuarterState(machine)
         machine.gunballs--
+        
+        if machine.gunballs <= 0 {
+            machine.state = SoldOutState(machine)
+        } else {
+            machine.state = NoQuarterState(machine)
+        }
+
     }
 }
 
@@ -172,6 +179,7 @@ class GumballMachine: QuarterMachine {
     
     func refill(numberOfGumballs: Int) {
         self.gunballs  += numberOfGumballs
+        println("Just refill machine to \(self.gunballs) gunballs")
         refilled()
     }
 }
