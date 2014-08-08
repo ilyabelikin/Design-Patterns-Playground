@@ -154,7 +154,6 @@ class LastExtraState: GumballMachineState {
         super.despense()
         println("a Toy for you!")
         machine.state = .SoldOut
-
     }
 }
 
@@ -221,6 +220,7 @@ class GumballMachine: QuarterMachine {
     }
 }
 
+// Click on plus next to return value to see console output in assistant editor
 let machine = GumballMachine(numberOfGunballs: 10)
 machine.turnOnMachine()
 
