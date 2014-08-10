@@ -9,7 +9,7 @@
 // so that one object change state, all of it dependent are notified and
 // can be updated automatically.
 //
-// TODO: # Wether station example (basic design)
+// Wether station example (basic design)
 
 protocol Observable {
     var observers: [Observer] { get set }
@@ -18,7 +18,7 @@ protocol Observable {
     func notifyObservers ()
 }
 
-protocol Observer {
+protocol Observer : class {
     // FIXIT: in beta5, serviceKit terminated on desired declaration
     // func update (updatedObject: Observable)
     func update (updatedObject: AnyObject)
@@ -50,12 +50,9 @@ class WetherStation: Observable {
     func removeObserver(observer: Observer) {
         var checkedObservers = [Observer]()
         for o in observers {
-            // TODO: Implement remove
-            // Error: Observer is not convertble to UInt8.
-            // Wow. I don't understand why is that.
-            // if o != observer {
+            if o !== observer {
                 checkedObservers.append(o)
-            // }
+            }
         }
         observers = checkedObservers
     }
@@ -153,6 +150,8 @@ wetherStation.registerObserver(stat)
 wetherStation.registerObserver(forecast)
 
 wetherStation.mesures = Mesures(data: [.Humidity : 32.8, .Temperature : 34.4 , .Pressure : 80.0 ])
+
+wetherStation.removeObserver(forecast)
 
 wetherStation.mesures = Mesures(data: [.Humidity : 52.8, .Temperature : 38.7 , .Pressure : 50.0 ])
 
