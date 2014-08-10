@@ -92,7 +92,7 @@ class CurrentConditionDisplay: Observer, Display {
 }
 
 
-class ForecastDisplay: Observer, Display {
+class AwersomeDisplay: Observer, Display {
     func update (updatedObject: AnyObject) {
         display()
     }
@@ -100,7 +100,7 @@ class ForecastDisplay: Observer, Display {
     func display() {
         println("--- Forecast ---")
         // Sorry, just random stuff
-        println("Everything is awesome! Everything is good if you live on the heap. Everything is awes-o-o-ome! Till you have a li-i-ink.\n")
+        println("Everything is awesome! Everything is cool if you live on the heap. Everything is awes-o-o-ome! While you l-i-i-i-nked.\n")
     }
 }
 
@@ -135,14 +135,13 @@ class WetherStatisticDisplay: Observer, Display {
     
     func display() {
         println("--- Staticstics ---")
-        
-        if data.isEmpty {
-            println("Have no data to analyze.\n")
-        }
-        else if data.count < 3 {
-            println("Need more measures.\n")
-        } else {
-            println("Avarage temperature for all time is \(avarageTemperature())\n")
+        switch data.count {
+            case 0:
+                println("Have no data to analyze.\n")
+            case 0..<3:
+                println("Need more measures.\n")
+            default:
+                println("Avarage temperature is \(avarageTemperature())\n")
         }
     }
 }
@@ -150,19 +149,23 @@ class WetherStatisticDisplay: Observer, Display {
 let wetherStation = WetherStation()
 let current = CurrentConditionDisplay()
 let stat = WetherStatisticDisplay()
-let forecast = ForecastDisplay()
+let awesome = AwersomeDisplay()
 
 current.display()
 stat.display()
 
 wetherStation.registerObserver(current)
 wetherStation.registerObserver(stat)
-wetherStation.registerObserver(forecast)
+wetherStation.registerObserver(awesome)
 
 wetherStation.mesures = Mesures(data: [.Humidity : 42.05, .Temperature : 34.4 , .Pressure : 1001 ])
 
-wetherStation.removeObserver(forecast)
+wetherStation.removeObserver(awesome)
 
 wetherStation.mesures = Mesures(data: [.Humidity : 52.8, .Temperature : 36.7 , .Pressure : 998 ])
 
 wetherStation.mesures = Mesures(data: [.Humidity : 80.1, .Temperature : 32.1 , .Pressure : 1009 ])
+
+wetherStation.mesures = Mesures(data: [.Humidity : 60, .Temperature : 37, .Pressure : 1001 ])
+
+// It is so hot in Hopng Kong :/
