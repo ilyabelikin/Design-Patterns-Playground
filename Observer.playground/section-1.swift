@@ -171,3 +171,7 @@ wetherStation.mesures = Mesures(data: [.Humidity : 80.1, .Temperature : 32.1 , .
 wetherStation.mesures = Mesures(data: [.Humidity : 60, .Temperature : 37, .Pressure : 1001 ])
 
 // It is so hot in Hopng Kong :/
+
+
+// TODO: I saw a lot of posts about observers on devforum, need to check 
+// and add native version of it in separate playground
