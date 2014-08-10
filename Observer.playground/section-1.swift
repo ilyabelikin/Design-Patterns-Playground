@@ -36,7 +36,7 @@ class WetherStation: Observable {
    
     var mesures : Mesures = Mesures() {
         didSet {
-            println("New data arrived.\n")
+            println("\n### Updtae form Station ###\n")
             self.notifyObservers()
         }
     }
@@ -100,9 +100,10 @@ class ForecastDisplay: Observer, Display {
     func display() {
         println("--- Forecast ---")
         // Sorry, just random stuff
-        println("Everything is awesome! Everything is good if you part of the heap. Everything is awes-o-o-ome! Till you have a li-i-ink.\n")
+        println("Everything is awesome! Everything is good if you live on the heap. Everything is awes-o-o-ome! Till you have a li-i-ink.\n")
     }
 }
+
 
 import Foundation
 
@@ -134,7 +135,15 @@ class WetherStatisticDisplay: Observer, Display {
     
     func display() {
         println("--- Staticstics ---")
-        println("Avarage temperature for all time is \(avarageTemperature())\n")
+        
+        if data.isEmpty {
+            println("Have no data to analyze.\n")
+        }
+        else if data.count < 3 {
+            println("Need more measures.\n")
+        } else {
+            println("Avarage temperature for all time is \(avarageTemperature())\n")
+        }
     }
 }
 
@@ -144,18 +153,16 @@ let stat = WetherStatisticDisplay()
 let forecast = ForecastDisplay()
 
 current.display()
+stat.display()
 
 wetherStation.registerObserver(current)
 wetherStation.registerObserver(stat)
 wetherStation.registerObserver(forecast)
 
-wetherStation.mesures = Mesures(data: [.Humidity : 32.8, .Temperature : 34.4 , .Pressure : 80.0 ])
+wetherStation.mesures = Mesures(data: [.Humidity : 42.05, .Temperature : 34.4 , .Pressure : 1001 ])
 
 wetherStation.removeObserver(forecast)
 
-wetherStation.mesures = Mesures(data: [.Humidity : 52.8, .Temperature : 38.7 , .Pressure : 50.0 ])
+wetherStation.mesures = Mesures(data: [.Humidity : 52.8, .Temperature : 36.7 , .Pressure : 998 ])
 
-
-wetherStation.mesures = Mesures(data: [.Humidity : 70.1, .Temperature : 30.1 , .Pressure : 89.0 ])
-
-wetherStation.notifyObservers()
+wetherStation.mesures = Mesures(data: [.Humidity : 80.1, .Temperature : 32.1 , .Pressure : 1009 ])
