@@ -18,6 +18,8 @@ protocol Observable {
     func notifyObservers ()
 }
 
+// This "class" means that this protocol only for classes and we need 
+// that to be able to check identity of Observers in removeObserver
 protocol Observer : class {
     // FIXIT: in beta5, serviceKit terminated on desired declaration
     // func update (updatedObject: Observable)
