@@ -1,7 +1,7 @@
 //
 // TODO: Motivation
 //
-// Real-world analogy is newspaper subscriprion.
+// Real-world analogy: newspaper subscriprion.
 //
 // # Definition
 //
@@ -12,7 +12,9 @@
 // Wether station example (basic design)
 
 protocol Observable {
-    var observers: [Observer] { get set }
+    // TODO: It should be weak is not it?
+    // But I can't do so here... hm...
+    var  observers: [Observer] { get set }
     func addObserver (observer: Observer)
     func removeObserver (observer: Observer)
     func notifyObservers ()
@@ -45,7 +47,7 @@ class WetherStation: Observable {
     }
     
     var observers = [Observer]()
-    
+
     func addObserver(observer: Observer) {
         observers.append(observer)
     }
@@ -85,6 +87,10 @@ class CurrentConditionDisplay: Observer, Display {
         }
         println()
     }
+    
+    // TODO: Hmmm... I beilive I need a way to remove
+    // self from observers in deinit.
+    deinit { }
 }
 
 
