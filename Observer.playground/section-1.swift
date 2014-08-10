@@ -13,7 +13,7 @@
 
 protocol Observable {
     var observers: [Observer] { get set }
-    func registerObserver (observer: Observer)
+    func addObserver (observer: Observer)
     func removeObserver (observer: Observer)
     func notifyObservers ()
 }
@@ -26,6 +26,7 @@ protocol Observer : class {
     func update (updatedObject: AnyObject)
 }
 
+// This enum and struct completely unnecessary, added for convinience
 enum MesureType {
     case Humidity, Temperature, Pressure
 }
@@ -45,7 +46,7 @@ class WetherStation: Observable {
     
     var observers = [Observer]()
     
-    func registerObserver(observer: Observer) {
+    func addObserver(observer: Observer) {
         observers.append(observer)
     }
     
@@ -64,7 +65,6 @@ class WetherStation: Observable {
             observer.update(self)
         }
     }
-
 }
 
 protocol Display {
@@ -100,14 +100,14 @@ class AwersomeDisplay: Observer, Display {
     }
     
     func display() {
-        println("--- Forecast ---")
+        println("--- Awersomeness ---")
         // Sorry, just random stuff
         println("Everything is awesome! Everything is cool if you live on the heap. Everything is awes-o-o-ome! While you l-i-i-i-nked.\n")
     }
 }
 
 
-import Foundation
+import Foundation // for NSDate
 
 class WetherStatisticDisplay: Observer, Display {
     var data = [NSTimeInterval: Mesures]()
@@ -156,9 +156,9 @@ let awesome = AwersomeDisplay()
 current.display()
 stat.display()
 
-wetherStation.registerObserver(current)
-wetherStation.registerObserver(stat)
-wetherStation.registerObserver(awesome)
+wetherStation.addObserver(current)
+wetherStation.addObserver(stat)
+wetherStation.addObserver(awesome)
 
 wetherStation.mesures = Mesures(data: [.Humidity : 42.05, .Temperature : 34.4 , .Pressure : 1001 ])
 
