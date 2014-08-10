@@ -51,13 +51,7 @@ class WetherStation: Observable {
     }
     
     func removeObserver(observer: Observer) {
-        var checkedObservers = [Observer]()
-        for o in observers {
-            if o !== observer {
-                checkedObservers.append(o)
-            }
-        }
-        observers = checkedObservers
+        observers = observers.filter{ $0 !== observer }
     }
     
     func notifyObservers() {
