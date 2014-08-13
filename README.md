@@ -4,12 +4,14 @@ I made this collection of playgrounds in the process of learning object oriented
 
 I suddenly finish course and realize, that I want to learn more, bridge basics I learnet to practice in Swift and keep this playgrounds updated. I will appreciate any help to made this collection complete and comprehensible.
 
-Moreover I relize that Swift is an opportunity to reevalute some calssical OO design patterns in light of functional approach. I will keep this collection updated on my way to learn what it practically means.
+Moreover I realize that Swift is an opportunity to reevalute some classical OO design patterns in light of functional approach. I will keep updating this collection updated on my way to learn what it practically means.
 
 
 # Structure
 
 I want to keep each playground resonable short and self explained. I keep "motivation" section and basic implementation in a playground file with pattern name, than more native for Swift or specific variants in additional playgrounds named by convention "Pattern name - Specific".  
+
+**State Machine** is the best example so far.
 
 # Materials
 
@@ -35,4 +37,4 @@ TODO: Understand what it really mean for mankind
 
 # More Playgrounds
 
-[Design Patterns implemented in Swift](https://github.com/ochococo/Design-Patterns-In-Swift) – another collection of patterns implementation. Without unrelated comments and awfull spelling.
+[Design Patterns implemented in Swift](https://github.com/ochococo/Design-Patterns-In-Swift) – another collection of patterns implementation. Without unrelated comments and awful spelling.
