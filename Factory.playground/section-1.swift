@@ -9,12 +9,10 @@
 
 // # Simple pizza factory example
 
-
 class Pizza {
-    
     let name = String()
     
-    enum Dough: String { case Thin = "thin", Thick = "thick" }
+    enum Dough : String { case Thin = "thin", Thick = "thick" }
     var dough = Dough.Thin
     
     var souce = String()
@@ -37,20 +35,21 @@ class Pizza {
     }
 }
 
-class PeperoniPizza: Pizza {
-    override var name: String {
+class PeperoniPizza : Pizza {
+    override var name : String {
         get { return "Peperoni Pizza"}
     }
     
     override init() {
         super.init()
+        // NOTE: It feels natural to use Decorator for this
         toppings = ["Papeeroni", "Onoion", "Cherry", "Chedar"]
     }
     
 }
 
-class HawaiPizza: Pizza {
-    override var name: String {
+class HawaiPizza : Pizza {
+    override var name : String {
         get { return "Hawai Pizza"}
     }
     
@@ -60,8 +59,8 @@ class HawaiPizza: Pizza {
     }
 }
 
-class MargaritaPizza: Pizza {
-    override var name: String {
+class MargaritaPizza : Pizza {
+    override var name : String {
         get { return "Margarita Pizza"}
     }
     
@@ -72,7 +71,7 @@ class MargaritaPizza: Pizza {
 }
 
 class SimplePizzaFactory {
-    func createPizza (name:String) -> Pizza? {
+    func createPizza (name : String) -> Pizza? {
         switch name {
             case "Peperoni":
                 return PeperoniPizza()
@@ -87,13 +86,13 @@ class SimplePizzaFactory {
 }
 
 class PizzaStore {
-    let pizzaFactory: SimplePizzaFactory
+    let pizzaFactory : SimplePizzaFactory
     
-    init (_ factory: SimplePizzaFactory) {
+    init (_ factory : SimplePizzaFactory) {
         self.pizzaFactory = factory
     }
     
-    func orderPizza(type: String) {
+    func orderPizza(type : String) {
         println("You just ordered a \(type) pizza.")
         if let pizza = pizzaFactory.createPizza(type) {
             println("Ok. Will be in 20 minutes...")
@@ -109,9 +108,11 @@ class PizzaStore {
 }
 
 let store = PizzaStore(SimplePizzaFactory())
-store.orderPizza("foo")
+
 store.orderPizza("Hawai")
 store.orderPizza("Peperoni")
 store.orderPizza("Margarita")
+store.orderPizza("Swiftita")
 
+// TODO: Expand example to show benifits
 
