@@ -1,7 +1,7 @@
 // 
 // # Motivation
 //
-// TODO: Explain sad truth
+// TODO: Explain sad truth about overpriced coffee
 //
 // Classes should be open for extension, but close for modification.
 //
@@ -13,63 +13,56 @@
 
 // # Coffee shop example
 
-
-protocol Beverage: Printable {
+protocol Beverage : Printable {
     func cost() -> Double
 }
 
-class HouseBlend: Beverage {
-    
-    var description : String {
-        return "House Blend"
-    }
+class HouseBlend : Beverage {
+    var description : String { return "House Blend" }
     
     func cost() -> Double  {
         return 15.0
     }
 }
 
-class Espresso: Beverage {
-
-    var description : String {
-        return "Espresso"
-    }
+class Espresso : Beverage {
+    var description : String { return "Espresso" }
     
     func cost() -> Double  {
         return 20.0
     }
 }
 
-class CondimentDecorator: Beverage {
+class CondimentDecorator : Beverage {
     let beverage: Beverage
+    
     init (_ beverage: Beverage) {
         self.beverage = beverage
     }
     
     func cost() -> Double {
-        return beverage.cost() + 5.0
+        return beverage.cost() + 5.0 // default cost
     }
     
-    var description: String {
+    var description : String {
         fatalError("Descriotion should be overrided")
         return beverage.description
     }
-    
 }
 
-class Milk: CondimentDecorator {
+class Milk : CondimentDecorator {
     override var description : String {
-        return beverage.description + ", Milk"
+        return beverage.description + " + Milk"
     }
     
     override func cost() -> Double {
-        return beverage.cost() + 3.0
+        return beverage.cost() + 6.0
     }
 }
 
-class Mocha: CondimentDecorator {
+class Mocha : CondimentDecorator {
     override var description : String {
-        return beverage.description + ", Mocha"
+        return beverage.description + " + Mocha"
     }
     
     override func cost() -> Double {
@@ -77,14 +70,13 @@ class Mocha: CondimentDecorator {
     }
 }
 
-
 println("Wellcome to Coffeshop")
 
-
 let espresso = Espresso()
-println("Your \(espresso.description), please. It is \(espresso.cost())")
+println("Your \(espresso.description), sir. It is \(espresso.cost()) HKD")
 
+// They all decopled and dont mess with each other. Isn't it nice?
 let mix = Mocha(Milk(HouseBlend()))
 
-println("Your \(mix.description), please. It is \(mix.cost())")
+println("Your \(mix.description), sir. It is \(mix.cost()) HKD")
 
