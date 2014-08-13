@@ -1,20 +1,23 @@
+# Swift design playgrounds
+
 I made this collection of playgrounds in the process of learning object oriented design course, so that I can understand concepts better in Swift instead of Java (which instructor used).
 
 I suddenly finish course and realize, that I want to learn more, bridge basics I learnet to practice in Swift and keep this playgrounds updated. I will appreciate any help to made this collection complete and comprehensible.
 
+Moreover I relize that Swift is an opportunity to reevalute some calssical OO design patterns in light of functional approach. I will keep this collection updated on my way to learn what it practically means.
+
 
 # Structure
 
-I want to keep each playground short and self-explained. Motivation and basic implementation in playground with pattern name, than more native and specific implementations in additional playgrounds named by convention "Pattern name - specific". 
-
+I want to keep each playground resonable short and self explained. I keep "motivation" section and basic implementation in a playground file with pattern name, than more native for Swift or specific variants in additional playgrounds named by convention "Pattern name - Specific".  
 
 # Materials
 
-[Course: Object-Oriented Design with Simon Allardice](http://www.lynda.com/Programming-tutorials/Foundations-of-Programming-Object-Oriented-Design/96949-2.html)
+**Course:** [Object-Oriented Design with Simon Allardice](http://www.lynda.com/Programming-tutorials/Foundations-of-Programming-Object-Oriented-Design/96949-2.html)
 
-[Course: Design Patterns with Elisabeth Robson and Eric Freeman](http://www.lynda.com/Developer-Programming-Foundations-tutorials/Foundations-Programming-Design-Patterns/135365-2.html)
+**Course:** [Design Patterns with Elisabeth Robson and Eric Freeman](http://www.lynda.com/Developer-Programming-Foundations-tutorials/Foundations-Programming-Design-Patterns/135365-2.html)
 
-[Blog post: Singleton Considered Stupid by Stevey Drunken](http://web.archive.org/web/20120221103151/http://sites.google.com/site/steveyegge2/singleton-considered-stupid)
+**Blog post:** [Singleton Considered Stupid by Stevey Drunken](http://web.archive.org/web/20120221103151/http://sites.google.com/site/steveyegge2/singleton-considered-stupid)
 
 "The problem is, about 1/3 to 1/2 of them were basically cover-ups for deficiencies in C++ that don't exist in other languages. Although I'm not a huge Perl fan anymore, I have to admit the Perl community caught on to this first (or at least funniest). They pointed out that many of these so-called patterns were actually an implementation of Functional Programming in C++. 
 
@@ -22,5 +25,14 @@ The Visitor, for instance, is just a class wrapper for a function with some accu
 
 TODO: Decompose second paragraph to actual examples in Swift
 
-[Book: Head First Design Patterns](http://shop.oreilly.com/product/9780596007126.do)
+**Book:** [Head First Design Patterns](http://shop.oreilly.com/product/9780596007126.do)
 
+TODO: Port all examples covered in the book (authors kindly argeed)
+
+**Book:** [Functional Programming in Swift](http://www.objc.io/books/#early-access)
+
+TODO: Understand what it really mean for mankind
+
+# More Playgrounds
+
+[Design Patterns implemented in Swift](https://github.com/ochococo/Design-Patterns-In-Swift) – another collection of patterns implementation. Without unrelated comments and awfull spelling.
