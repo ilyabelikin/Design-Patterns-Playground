@@ -1,6 +1,6 @@
 //
 // Gumballs machine example using enum to manage states.
-// I belive this approach a little more native in Swift.
+// I believe this approach a little more native in Swift.
 //
 
 protocol QuarterMachine {
@@ -11,6 +11,10 @@ protocol QuarterMachine {
 }
 
 class GumballMachineState: QuarterMachine {
+    // TODO: gunballs is a state too, so... probably it 
+    // will be better to put it here?
+    //class var gunballs = 0
+    
     let machine: GumballMachine
     init (_ machine: GumballMachine){
         self.machine = machine
@@ -33,7 +37,34 @@ class GumballMachineState: QuarterMachine {
     }
 }
 
-class SoldOutState: GumballMachineState {
+enum StatesOfGumballMachine  {
+    case TurnedOff
+    case SoldOut(GumballMachine)
+    case NoQuarter(GumballMachine)
+    case HasQuarter(GumballMachine)
+    case Sold(GumballMachine)
+    case LastExtra(GumballMachine)
+    
+    var handler: GumballMachineState? {
+        // TODO: Hm.. better that they were all Singletons
+        switch self {
+            case .TurnedOff:
+                return nil
+            case .SoldOut(let machine):
+                return SoldOutState(machine)
+            case .NoQuarter(let machine):
+                return NoQuarterState(machine)
+            case .HasQuarter(let machine):
+                return HasQuarterState(machine)
+            case .Sold(let machine):
+                return SoldState(machine)
+            case .LastExtra(let machine):
+                return LastExtraState(machine)
+        }
+    }
+}
+
+class SoldOutState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
@@ -61,7 +92,7 @@ class NoQuarterState: GumballMachineState {
     override func insertQuarter() {
         super.insertQuarter()
         println("inserted.")
-        machine.state = .HasQuarter
+        machine.state = .HasQuarter(machine)
     }
     
     override func ejectQuarter() {
@@ -90,13 +121,13 @@ class HasQuarterState: GumballMachineState {
     override func ejectQuarter() {
         super.ejectQuarter()
         println("your quarter back!")
-        machine.state = .NoQuarter
+        machine.state = .NoQuarter(machine)
     }
     
     override func turnCrank() {
         super.turnCrank()
         print("crrck!")
-         machine.state = .Sold
+         machine.state = .Sold(machine)
     }
     
     override func despense() {
@@ -124,11 +155,11 @@ class SoldState: GumballMachineState {
     override func despense() {
         super.despense()
         println("Gunball!")
-        machine.state = .NoQuarter
+        machine.state = .NoQuarter(machine)
         machine.gunballs--
         if machine.gunballs <= 0 {
             println("You are the last costumer, turn crank again to get extra!")
-            machine.state = .LastExtra
+            machine.state = .LastExtra(machine)
         }
     }
 }
@@ -153,61 +184,32 @@ class LastExtraState: GumballMachineState {
     override func despense() {
         super.despense()
         println("a Toy for you!")
-        machine.state = .SoldOut
+        machine.state = .SoldOut(machine)
     }
 }
 
-enum QuarterMachineStates {
-    case TurnedOff, SoldOut, NoQuarter, HasQuarter, Sold, LastExtra
-}
 
 class GumballMachine: QuarterMachine {
-    var state: QuarterMachineStates = .NoQuarter {
-        willSet {
-            switch newValue {
-                case .TurnedOff:
-                    self.stateHandler = nil
-                case .SoldOut:
-                    self.stateHandler = SoldOutState(self)
-                case .NoQuarter:
-                    self.stateHandler = NoQuarterState(self)
-                case .HasQuarter:
-                    self.stateHandler = HasQuarterState(self)
-                case .Sold:
-                    self.stateHandler = SoldState(self)
-                case .LastExtra:
-                    self.stateHandler = LastExtraState(self)
-            }
-        }
-    }
+    var state: StatesOfGumballMachine = .TurnedOff
     
-    var stateHandler: GumballMachineState?
-    
+    // TODO: it is state, it should be in GumballMachineState
     var gunballs = 0
     
     init (numberOfGunballs: Int) {
         gunballs = numberOfGunballs
     }
     
-    func turnOnMachine () {
-        if gunballs > 0 {
-            state = .NoQuarter
-        } else {
-            state = .SoldOut
-        }
-    }
-    
     func insertQuarter() {
-        stateHandler?.insertQuarter()
+        state.handler?.insertQuarter()
     }
     
     func ejectQuarter() {
-        stateHandler?.ejectQuarter()
+        state.handler?.ejectQuarter()
     }
     
     func turnCrank() {
-        stateHandler?.turnCrank()
-        stateHandler?.despense()
+        state.handler?.turnCrank()
+        state.handler?.despense()
     }
     
     func despense() {
@@ -215,14 +217,28 @@ class GumballMachine: QuarterMachine {
     }
     
     func refill(numberOfGumballs: Int) {
-        self.gunballs  += numberOfGumballs
-        self.state = .TurnedOff
+        self.gunballs += numberOfGumballs
+        updateState()
     }
+    
+    func turnOn() {
+        updateState()
+    }
+    
+    // TODO: it is state, it should be in GumballMachineState
+    func updateState() {
+        if self.gunballs > 0 {
+            self.state = .NoQuarter(machine)
+        } else {
+            self.state = .SoldOut(machine)
+        }
+    }
+    
 }
 
 // Click on plus next to return value to see console output in assistant editor
 let machine = GumballMachine(numberOfGunballs: 10)
-machine.turnOnMachine()
+machine.turnOn()
 
 machine.despense()
 
