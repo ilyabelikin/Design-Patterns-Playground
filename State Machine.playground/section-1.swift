@@ -1,26 +1,29 @@
-//
-// # Motivation
-//
-// "A truth that all programmers know: state management is why we get paid."
-// by Alexandros Salazar
-// Read whole post: http://nomothetis.svbtle.com/immutable-swift
-//
-// Any program manage states and, ideally, should be exhaustive. In other 
-// words a program should have a correct behavior for any combination of states.
-// This way we will have bug-free software. So... we now it is not the case.
-//
-// In practice it is quite usual when program manage only subset of possible
-// states and even do not express awareness about possible states of underling
-// object in explicit way. It is just in bunches of if and else statements all
-// over a source code.
-//
-// # Definition
-//
-// The State Pattern allows an object to alert its behavior when its
-// internal state change. The object will appear to change its class.
-//
+/*
+
+# Motivation
+
+"A truth that all programmers know: state management is why we get paid."
+by Alexandros Salazar
+Read whole post: http://nomothetis.svbtle.com/immutable-swift
+
+Any program manage states and, ideally, should be exhaustive. In other
+words a program should have a correct behavior for any combination of states.
+This way we will have bug-free software. So... we now it is not the case.
+
+In practice it is quite usual when program manage only subset of possible
+states and even do not express awareness about possible states of underling
+object in explicit way. It is just in bunches of if and else statements all
+over a source code.
+
+# Definition
+
+The State Pattern allows an object to alert its behavior when its internal 
+state change. The object will appear to change its class.
+
+*/
+
 // # Gumball machine example
-//
+
 // ## Tidilly coupled approach
 
 class GodGunballMachnie {
@@ -61,11 +64,11 @@ protocol QuarterMachine {
 }
 
 // Base class for states of machine
-class GumballMachineState: QuarterMachine {
+class GumballMachineState : QuarterMachine {
     
-    let machine: GumballMachine
+    let machine : GumballMachine
     
-    init (_ machine: GumballMachine){
+    init (_ machine : GumballMachine){
         self.machine = machine
     }
     
@@ -86,15 +89,15 @@ class GumballMachineState: QuarterMachine {
     }
 }
 
-class SoldOutState: GumballMachineState {
+class SoldOutState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
-        // In reality, wich we pretend to model, it is complitly
+        // In reality, wich I pretend to model, it is complitly
         // okay to put Quarter in sold out machine. I belive to
-        // model it better we can use two different objects with
+        // model it better I can use two different objects with
         // independent states for each gunballs pool with crank 
-        // and quarters slot
+        // and quarters slot.
         println("No way. It sold out!")
     }
     
@@ -114,7 +117,7 @@ class SoldOutState: GumballMachineState {
     }
 }
 
-class NoQuarterState: GumballMachineState {
+class NoQuarterState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
@@ -138,7 +141,7 @@ class NoQuarterState: GumballMachineState {
     }
 }
 
-class HasQuarterState: GumballMachineState {
+class HasQuarterState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
@@ -162,7 +165,7 @@ class HasQuarterState: GumballMachineState {
     }
 }
 
-class SoldState: GumballMachineState {
+class SoldState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
@@ -190,14 +193,14 @@ class SoldState: GumballMachineState {
     }
 }
 
-class GumballMachine: QuarterMachine {
+class GumballMachine : QuarterMachine {
     
-    let soldOutState: SoldOutState!
-    let noQuarterState: NoQuarterState!
-    let hasQuarterState: HasQuarterState!
-    let soldState: SoldState!
+    let soldOutState : SoldOutState!
+    let noQuarterState : NoQuarterState!
+    let hasQuarterState : HasQuarterState!
+    let soldState : SoldState!
 
-    var state: GumballMachineState!
+    var state : GumballMachineState!
     var gunballs = 0
     
     init (numberOfGunballs: Int) {
@@ -231,7 +234,7 @@ class GumballMachine: QuarterMachine {
         println("Be good. Pay and use crank if you want a gumball")
     }
     
-    func refill(numberOfGumballs: Int) {
+    func refill(numberOfGumballs : Int) {
         self.gunballs  += numberOfGumballs
         self.state = self.noQuarterState
     }

@@ -1,15 +1,18 @@
-// 
-// # Motivation
-//
-// TODO: Explain sad truth about overpriced coffee
-//
-// Classes should be open for extension, but close for modification.
-//
-// # Definition
-// 
-// The Decorator pattern attaches additional responsibilities to an object
-// dynamically. Provide a flexible alternative to subclassing for extending
-// functionality.
+/*
+
+# Motivation
+
+TODO: Explain sad truth about overpriced coffee
+
+O: Classes should be open for extension, but close for modification.
+
+# Definition
+
+The Decorator pattern attaches additional responsibilities to an object
+dynamically. Provide a flexible alternative to subclassing for extending
+functionality.
+
+*/
 
 // # Coffee shop example
 

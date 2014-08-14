@@ -1,22 +1,27 @@
-//
-// TODO: Motivation
-//
-// Real-world analogy: newspaper subscriprion.
-//
-// # Definition
-//
-// The Observer pattern defines a one-to-many dependency between objects
-// so that one object change state, all of it dependent are notified and
-// can be updated automatically.
-//
-// Wether station example (basic design)
+/*
+
+TODO: # Motivation
+
+Real-world analogy is newspaper subscriprion. This pattern usually 
+a part of MVC. View broadcast UI events so that Controller can handle 
+them appropriately.
+
+# Definition
+
+The Observer pattern defines a one-to-many dependency between objects
+so that one object change state, all of it dependent are notified and
+can be updated automatically.
+
+*/
+
+// # Wether station example (basic design)
 
 protocol Observable {
     // TODO: It should be weak is not it?
     // But I can't do so here... hm...
     var  observers: [Observer] { get set }
-    func addObserver (observer: Observer)
-    func removeObserver (observer: Observer)
+    func addObserver (observer : Observer)
+    func removeObserver (observer : Observer)
     func notifyObservers ()
 }
 
@@ -34,7 +39,7 @@ enum MesureType {
 }
 
 struct Mesures {
-    var data = [MesureType: Double]()
+    var data = [MesureType : Double]()
 }
 
 class WetherStation: Observable {
@@ -48,11 +53,11 @@ class WetherStation: Observable {
     
     var observers = [Observer]()
 
-    func addObserver(observer: Observer) {
+    func addObserver(observer : Observer) {
         observers.append(observer)
     }
     
-    func removeObserver(observer: Observer) {
+    func removeObserver(observer : Observer) {
         observers = observers.filter{ $0 !== observer }
     }
     
@@ -67,10 +72,10 @@ protocol Display {
     func display ()
 }
 
-class CurrentConditionDisplay: Observer, Display {
+class CurrentConditionDisplay : Observer, Display {
     var temperature: Double?
     
-    func update (updatedObject: AnyObject) {
+    func update (updatedObject : AnyObject) {
         if let wetherStation = updatedObject as? WetherStation {
             self.temperature = wetherStation.mesures.data[.Temperature] ?? nil
         }
@@ -94,8 +99,8 @@ class CurrentConditionDisplay: Observer, Display {
 }
 
 
-class AwersomeDisplay: Observer, Display {
-    func update (updatedObject: AnyObject) {
+class AwersomeDisplay : Observer, Display {
+    func update (updatedObject : AnyObject) {
         display()
     }
     
@@ -106,11 +111,10 @@ class AwersomeDisplay: Observer, Display {
     }
 }
 
-
 import Foundation // for NSDate
 
-class WetherStatisticDisplay: Observer, Display {
-    var data = [NSTimeInterval: Mesures]()
+class WetherStatisticDisplay : Observer, Display {
+    var data = [NSTimeInterval : Mesures]()
     
     func update (updatedObject: AnyObject) {
         if let wetherStation = updatedObject as? WetherStation {
@@ -160,18 +164,16 @@ wetherStation.addObserver(current)
 wetherStation.addObserver(stat)
 wetherStation.addObserver(awesome)
 
-wetherStation.mesures = Mesures(data: [.Humidity : 42.05, .Temperature : 34.4 , .Pressure : 1001 ])
+wetherStation.mesures = Mesures(data: [.Humidity: 42.05, .Temperature: 34.4 , .Pressure: 1001 ])
 
 wetherStation.removeObserver(awesome)
 
-wetherStation.mesures = Mesures(data: [.Humidity : 52.8, .Temperature : 36.7 , .Pressure : 998 ])
+wetherStation.mesures = Mesures(data: [.Humidity: 52.8, .Temperature: 36.7 , .Pressure: 998 ])
 
-wetherStation.mesures = Mesures(data: [.Humidity : 80.1, .Temperature : 32.1 , .Pressure : 1009 ])
+wetherStation.mesures = Mesures(data: [.Humidity: 80.1, .Temperature: 32.1 , .Pressure: 1009 ])
 
-wetherStation.mesures = Mesures(data: [.Humidity : 60, .Temperature : 37, .Pressure : 1001 ])
-
-// It is so hot in Hopng Kong :/
-
+// Yes, actualy it is so hot in Hopng Kong :/
+wetherStation.mesures = Mesures(data: [.Humidity: 60, .Temperature: 37, .Pressure: 1001 ])
 
 // TODO: I saw a lot of posts about observers on devforum, need to check 
 // and add native version of it in separate playground

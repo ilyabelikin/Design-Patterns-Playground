@@ -12,11 +12,11 @@ protocol QuarterMachine {
     func refilled ()
 }
 
-class GumballMachineState: QuarterMachine {
+class GumballMachineState : QuarterMachine {
 
-    let machine: GumballMachine
+    let machine : GumballMachine
     
-    init (_ machine: GumballMachine){
+    init (_ machine : GumballMachine){
         self.machine = machine
     }
     
@@ -41,7 +41,7 @@ class GumballMachineState: QuarterMachine {
     }
 }
 
-class SoldOutState: GumballMachineState {
+class SoldOutState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
@@ -68,7 +68,7 @@ class SoldOutState: GumballMachineState {
     }
 }
 
-class NoQuarterState: GumballMachineState {
+class NoQuarterState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
@@ -92,7 +92,7 @@ class NoQuarterState: GumballMachineState {
     }
 }
 
-class HasQuarterState: GumballMachineState {
+class HasQuarterState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
@@ -116,7 +116,7 @@ class HasQuarterState: GumballMachineState {
     }
 }
 
-class SoldState: GumballMachineState {
+class SoldState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
@@ -147,7 +147,7 @@ class SoldState: GumballMachineState {
     }
 }
 
-class GumballMachine: QuarterMachine {
+class GumballMachine : QuarterMachine {
     
     var state: QuarterMachine?
     var gunballs = 0

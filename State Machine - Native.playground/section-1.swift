@@ -10,13 +10,13 @@ protocol QuarterMachine {
     func despense ()
 }
 
-class GumballMachineState: QuarterMachine {
+class GumballMachineState : QuarterMachine {
     // TODO: gunballs is a state too, so... probably it 
     // will be better to put it here?
     //class var gunballs = 0
     
-    let machine: GumballMachine
-    init (_ machine: GumballMachine){
+    let machine : GumballMachine
+    init (_ machine : GumballMachine){
         self.machine = machine
     }
     
@@ -45,8 +45,10 @@ enum StatesOfGumballMachine  {
     case Sold(GumballMachine)
     case LastExtra(GumballMachine)
     
-    var handler: GumballMachineState? {
+    var handler : GumballMachineState? {
         // TODO: Hm.. better that they were all Singletons
+        // or... I can init them all here and make machine
+        // an Optional
         switch self {
             case .TurnedOff:
                 return nil
@@ -87,7 +89,7 @@ class SoldOutState : GumballMachineState {
     }
 }
 
-class NoQuarterState: GumballMachineState {
+class NoQuarterState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
@@ -111,7 +113,7 @@ class NoQuarterState: GumballMachineState {
     }
 }
 
-class HasQuarterState: GumballMachineState {
+class HasQuarterState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
@@ -135,7 +137,7 @@ class HasQuarterState: GumballMachineState {
     }
 }
 
-class SoldState: GumballMachineState {
+class SoldState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
@@ -164,7 +166,7 @@ class SoldState: GumballMachineState {
     }
 }
 
-class LastExtraState: GumballMachineState {
+class LastExtraState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
@@ -189,13 +191,13 @@ class LastExtraState: GumballMachineState {
 }
 
 
-class GumballMachine: QuarterMachine {
+class GumballMachine : QuarterMachine {
     var state: StatesOfGumballMachine = .TurnedOff
     
     // TODO: it is state, it should be in GumballMachineState
     var gunballs = 0
     
-    init (numberOfGunballs: Int) {
+    init (numberOfGunballs : Int) {
         gunballs = numberOfGunballs
     }
     
@@ -216,7 +218,7 @@ class GumballMachine: QuarterMachine {
         println("Be good. Pay and use crank if you want a gumball")
     }
     
-    func refill(numberOfGumballs: Int) {
+    func refill(numberOfGumballs : Int) {
         self.gunballs += numberOfGumballs
         updateState()
     }

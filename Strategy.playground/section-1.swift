@@ -1,48 +1,50 @@
-//
-// # Motivation
-//
-// Inheritance is not working very well as approach to separate code that 
-// very in bunch of classes with different behavior.
-//
-// # Ducks example
-//
-// It feels natural to have parent class Duck and inherit every other type 
-// of duck form it. It works well for Mallard Duck and Redhead Duck but
-// what if you someday will need to add Rubber duck or even Decoy duck? 
-// In this case you will need to override methods such as fly() and quack()
-// in unnatural way.
-//
-// Rubber and Decoy duck classes probably will suffer more and more from
-// heredity when design will evolve with new changes and features requests.
+/*
 
-// Inheritance express IS-A relation, which is not always the better way
-// to model things. HAS-A relation for vary parts ca be a better choice.
-//
-// # Definition
-//
-// The Strategy pattern defines a family of algorithms, encapsulate each
-// one, and makes them interchangeable. Strategy lets algorithm vary
-// independently from clients that use it.
-//
+# Motivation
+
+Inheritance is not working very well as approach to separate code that
+very in bunch of classes with different behavior.
+
+# Ducks example
+
+It feels natural to have parent class Duck and inherit every other type
+of duck form it. It works well for Mallard Duck and Redhead Duck but
+what if you someday will need to add Rubber duck or even Decoy duck?
+In this case you will need to override methods such as fly() and quack()
+in unnatural way.
+
+Rubber and Decoy duck classes probably will suffer more and more from
+heredity when design will evolve with new changes and features requests.
+
+Inheritance express IS-A relation, which is not always the better way
+to model things. HAS-A relation for vary parts ca be a better choice.
+
+# Definition
+
+The Strategy pattern defines a family of algorithms, encapsulate each
+one, and makes them interchangeable. Strategy lets algorithm vary
+independently from clients that use it.
+
+*/
 
 // Interface for "family of alghoritms" that Ducks will use
 protocol FlyBehaivor {
     func fly()
 }
 
-class FlyWithWings: FlyBehaivor {
+class FlyWithWings : FlyBehaivor {
     func fly() {
         println("It is flying using wings")
     }
 }
 
-class FlyWithRocket: FlyBehaivor {
+class FlyWithRocket : FlyBehaivor {
     func fly() {
         println("It is flying using a fucking ROCKET! Yahoooooo!")
     }
 }
 
-class FlyNoWay: FlyBehaivor {
+class FlyNoWay : FlyBehaivor {
     func fly() {
         println("It can't fly.")
     }
@@ -53,19 +55,19 @@ protocol QuackBehaivor {
     func quack()
 }
 
-class Quack: QuackBehaivor {
+class Quack : QuackBehaivor {
     func quack() {
         println("Quack!")
     }
 }
 
-class Squeak: QuackBehaivor {
+class Squeak : QuackBehaivor {
     func quack() {
         println("Squeak!")
     }
 }
 
-class Mute: QuackBehaivor {
+class Mute : QuackBehaivor {
     func quack()  {
         println("Silence.")
     }
@@ -79,7 +81,7 @@ class Duck {
     var flyBehaivor: FlyBehaivor
     var quackBehaivor: QuackBehaivor
 
-    init (flyBy: FlyBehaivor, quackBy: QuackBehaivor) {
+    init (flyBy : FlyBehaivor, quackBy : QuackBehaivor) {
         flyBehaivor = flyBy
         quackBehaivor = quackBy
     }
@@ -107,25 +109,25 @@ class Duck {
     }
 }
 
-class MallardDuck: Duck {
+class MallardDuck : Duck {
     override func display() {
         println("Mallard duck")
     }
 }
 
-class RedheadDuck: Duck {
+class RedheadDuck : Duck {
     override func display() {
         println("Redhead duck")
     }
 }
 
-class RubberDuck: Duck {
+class RubberDuck : Duck {
     override func display() {
         println("Rubber duck")
     }
 }
 
-class DecoyDuck: Duck {
+class DecoyDuck : Duck {
     override func display() {
         println("Decoy duck")
     }
