@@ -10,7 +10,7 @@ Moreover I realize that Swift is an opportunity to reevalute some classical obje
 
 I want to keep each playground resonably short and self explained. I keep "motivation" section and basic implementation in a playground file with pattern name, than more native for Swift or specific variants in additional playgrounds named by convention "Pattern name - Specific".  
 
-[State Machine](https://github.com/ihrd/Design-Patterns-Playground/blob/master/State%20Machine.playground/section-1.swift) is the best example so far.
+[State Machine](https://github.com/ihrd/Design-Patterns-Playground/blob/master/State%20Machine.playground/section-1.swift) and [State Machine - Native](https://github.com/ihrd/Design-Patterns-Playground/blob/master/State%20Machine%20-%20Native.playground/section-1.swift) are best examples so far.
 
 # Materials
 
