@@ -15,8 +15,8 @@ class GumballMachineState : QuarterMachine {
     // will be better to put it here?
     //class var gunballs = 0
     
-    let machine : GumballMachine
-    init (_ machine : GumballMachine){
+    let machine: GumballMachine
+    init (_ machine: GumballMachine){
         self.machine = machine
     }
     
@@ -45,7 +45,7 @@ enum StatesOfGumballMachine  {
     case Sold(GumballMachine)
     case LastExtra(GumballMachine)
     
-    var handler : GumballMachineState? {
+    var handler: GumballMachineState? {
         // TODO: Hm.. better that they were all Singletons
         // or... I can init them all here and make machine
         // an Optional
@@ -197,7 +197,7 @@ class GumballMachine : QuarterMachine {
     // TODO: it is state, it should be in GumballMachineState
     var gunballs = 0
     
-    init (numberOfGunballs : Int) {
+    init (numberOfGunballs: Int) {
         gunballs = numberOfGunballs
     }
     
@@ -218,7 +218,7 @@ class GumballMachine : QuarterMachine {
         println("Be good. Pay and use crank if you want a gumball")
     }
     
-    func refill(numberOfGumballs : Int) {
+    func refill(numberOfGumballs: Int) {
         self.gunballs += numberOfGumballs
         updateState()
     }

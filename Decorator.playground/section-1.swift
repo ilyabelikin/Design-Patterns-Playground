@@ -21,7 +21,7 @@ protocol Beverage : Printable {
 }
 
 class HouseBlend : Beverage {
-    var description : String { return "House Blend" }
+    var description: String { return "House Blend" }
     
     func cost() -> Double  {
         return 15.0
@@ -29,7 +29,7 @@ class HouseBlend : Beverage {
 }
 
 class Espresso : Beverage {
-    var description : String { return "Espresso" }
+    var description: String { return "Espresso" }
     
     func cost() -> Double  {
         return 20.0
@@ -47,14 +47,14 @@ class CondimentDecorator : Beverage {
         return beverage.cost() + 5.0 // default cost
     }
     
-    var description : String {
+    var description: String {
         fatalError("Descriotion should be overrided")
         return beverage.description
     }
 }
 
 class Milk : CondimentDecorator {
-    override var description : String {
+    override var description: String {
         return beverage.description + " + Milk"
     }
     
@@ -64,7 +64,7 @@ class Milk : CondimentDecorator {
 }
 
 class Mocha : CondimentDecorator {
-    override var description : String {
+    override var description: String {
         return beverage.description + " + Mocha"
     }
     

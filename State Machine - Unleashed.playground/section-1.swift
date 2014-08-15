@@ -14,9 +14,9 @@ protocol QuarterMachine {
 
 class GumballMachineState : QuarterMachine {
 
-    let machine : GumballMachine
+    let machine: GumballMachine
     
-    init (_ machine : GumballMachine){
+    init (_ machine: GumballMachine){
         self.machine = machine
     }
     

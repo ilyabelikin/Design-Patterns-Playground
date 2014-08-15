@@ -29,7 +29,7 @@ state change. The object will appear to change its class.
 class GodGunballMachnie {
     
     enum States { case SoldOut, NoQuarter, HasQuarter, Sold }
-    var state : States = .NoQuarter
+    var state: States = .NoQuarter
     
     func inserQuarter () {
         print("You are going to insert Quarter... ")
@@ -66,9 +66,9 @@ protocol QuarterMachine {
 // Base class for states of machine
 class GumballMachineState : QuarterMachine {
     
-    let machine : GumballMachine
+    let machine: GumballMachine
     
-    init (_ machine : GumballMachine){
+    init (_ machine: GumballMachine){
         self.machine = machine
     }
     
@@ -195,12 +195,12 @@ class SoldState : GumballMachineState {
 
 class GumballMachine : QuarterMachine {
     
-    let soldOutState : SoldOutState!
-    let noQuarterState : NoQuarterState!
-    let hasQuarterState : HasQuarterState!
-    let soldState : SoldState!
+    let soldOutState: SoldOutState!
+    let noQuarterState: NoQuarterState!
+    let hasQuarterState: HasQuarterState!
+    let soldState: SoldState!
 
-    var state : GumballMachineState!
+    var state: GumballMachineState!
     var gunballs = 0
     
     init (numberOfGunballs: Int) {
@@ -234,7 +234,7 @@ class GumballMachine : QuarterMachine {
         println("Be good. Pay and use crank if you want a gumball")
     }
     
-    func refill(numberOfGumballs : Int) {
+    func refill(numberOfGumballs: Int) {
         self.gunballs  += numberOfGumballs
         self.state = self.noQuarterState
     }

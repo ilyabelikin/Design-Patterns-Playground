@@ -19,7 +19,7 @@ or an event)
 
 protocol Mementoable {
     func createMemento () -> Memento
-    func restoreFromMemento (momento : Memento)
+    func restoreFromMemento (momento: Memento)
 }
 
 protocol DocumentData {
@@ -27,7 +27,7 @@ protocol DocumentData {
 }
 
 // Object which state we care about, "originator"
-class Document: DocumentData, Mementoable {
+class Document : DocumentData, Mementoable {
     
     var content = ""
     
@@ -35,13 +35,13 @@ class Document: DocumentData, Mementoable {
         return Memento(self.content)
     }
     
-    func restoreFromMemento(momento : Memento) {
+    func restoreFromMemento(momento: Memento) {
         self.content = momento.content
     }
 }
 
 class Memento : DocumentData {
-    var content : String
+    var content: String
     
     init (_ content: String) {
         self.content = content
@@ -54,11 +54,11 @@ class Controller {
     var document: Document
     var documetnChanges = [Memento]()
    
-    init (document : Document) {
+    init (document: Document) {
         self.document = document
     }
     
-    func cahngeDocumentTo (newContent : String) {
+    func cahngeDocumentTo (newContent: String) {
         let memento = document.createMemento()
         documetnChanges.append(memento)
         document.content = newContent

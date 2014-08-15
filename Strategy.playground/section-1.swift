@@ -81,7 +81,7 @@ class Duck {
     var flyBehaivor: FlyBehaivor
     var quackBehaivor: QuackBehaivor
 
-    init (flyBy : FlyBehaivor, quackBy : QuackBehaivor) {
+    init (flyBy: FlyBehaivor, quackBy: QuackBehaivor) {
         flyBehaivor = flyBy
         quackBehaivor = quackBy
     }

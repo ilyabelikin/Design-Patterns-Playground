@@ -28,7 +28,7 @@ class Singleton {
     //class let instance = Singleton()
     
     // Using private struct instead
-    class var sharedInstance : Singleton {
+    class var sharedInstance: Singleton {
         struct Static {
             // Constant in Swift thread safe by desing, internaly 
             // it works like if dispatch_once applied
@@ -89,25 +89,25 @@ Or I just need to improve my example to make it a litle bit more real.
 // TODO: Improve this one or make a better example
 
 class CreditCard {
-    var number : Int
+    var number: Int
     
-    func charge (amount : Double) {
+    func charge (amount: Double) {
         let creditCardProcessor = CreditCardProcessor.sharedInstance
         creditCardProcessor.proceesCharge(self, amount : amount)
     }
     
-    init (cardNumber : Int) {
+    init (cardNumber: Int) {
         self.number = cardNumber
     }
 }
 
 class CreditCardProcessor {
-    class var sharedInstance : CreditCardProcessor {
+    class var sharedInstance: CreditCardProcessor {
         struct Static { static let instance = CreditCardProcessor() }
         return Static.instance
     }
     
-    func proceesCharge(card : CreditCard, amount : Double) {
+    func proceesCharge(card: CreditCard, amount: Double) {
         let queue = OfflineQueue.sharedInstance
         queue.registerTransaction()
         println("Thank you, your credit card $\(amount) less.")

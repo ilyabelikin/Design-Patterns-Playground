@@ -20,8 +20,8 @@ protocol Observable {
     // TODO: It should be weak is not it?
     // But I can't do so here... hm...
     var  observers: [Observer] { get set }
-    func addObserver (observer : Observer)
-    func removeObserver (observer : Observer)
+    func addObserver (observer: Observer)
+    func removeObserver (observer: Observer)
     func notifyObservers ()
 }
 
@@ -42,9 +42,9 @@ struct Mesures {
     var data = [MesureType : Double]()
 }
 
-class WetherStation: Observable {
+class WetherStation : Observable {
    
-    var mesures : Mesures = Mesures() {
+    var mesures: Mesures = Mesures() {
         didSet {
             println("\n### Updtae form Station ###\n")
             self.notifyObservers()
@@ -53,11 +53,11 @@ class WetherStation: Observable {
     
     var observers = [Observer]()
 
-    func addObserver(observer : Observer) {
+    func addObserver(observer: Observer) {
         observers.append(observer)
     }
     
-    func removeObserver(observer : Observer) {
+    func removeObserver(observer: Observer) {
         observers = observers.filter{ $0 !== observer }
     }
     
@@ -75,7 +75,7 @@ protocol Display {
 class CurrentConditionDisplay : Observer, Display {
     var temperature: Double?
     
-    func update (updatedObject : AnyObject) {
+    func update (updatedObject: AnyObject) {
         if let wetherStation = updatedObject as? WetherStation {
             self.temperature = wetherStation.mesures.data[.Temperature] ?? nil
         }
@@ -100,7 +100,7 @@ class CurrentConditionDisplay : Observer, Display {
 
 
 class AwersomeDisplay : Observer, Display {
-    func update (updatedObject : AnyObject) {
+    func update (updatedObject: AnyObject) {
         display()
     }
     
