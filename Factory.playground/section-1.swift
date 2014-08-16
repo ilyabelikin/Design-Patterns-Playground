@@ -48,7 +48,6 @@ class PeperoniPizza : Pizza {
         // NOTE: It feels natural to use Decorator for this
         toppings = ["Papeeroni", "Onoion", "Cherry", "Chedar"]
     }
-    
 }
 
 class HawaiPizza : Pizza {
@@ -95,7 +94,7 @@ class PizzaStore {
         self.pizzaFactory = factory
     }
     
-    func orderPizza(type : String) {
+    func orderPizza(type: String) {
         println("You just ordered a \(type) pizza.")
         if let pizza = pizzaFactory.createPizza(type) {
             println("Ok. Will be in 20 minutes...")

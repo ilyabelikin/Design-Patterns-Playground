@@ -131,7 +131,7 @@ class WetherStatisticDisplay : Observer, Display {
         var sum = 0.0
         
         for (_, value) in data {
-            if let temp = value.data[MesureType.Temperature] {
+            if let temp = value.data[.Temperature] {
                 sum += temp
                 numberOfMesures++
             }

@@ -93,7 +93,7 @@ class CreditCard {
     
     func charge (amount: Double) {
         let creditCardProcessor = CreditCardProcessor.sharedInstance
-        creditCardProcessor.proceesCharge(self, amount : amount)
+        creditCardProcessor.proceesCharge(self, amount: amount)
     }
     
     init (cardNumber: Int) {
@@ -115,7 +115,7 @@ class CreditCardProcessor {
 }
 
 class OfflineQueue {
-    class var sharedInstance : OfflineQueue {
+    class var sharedInstance: OfflineQueue {
         struct Static { static let instance = OfflineQueue() }
         return Static.instance
     }
@@ -129,8 +129,8 @@ class OfflineQueue {
 }
 
 class Database {
-    class var sharedInstance : Database {
-    struct Static { static let instance = Database() }
+    class var sharedInstance: Database {
+        struct Static { static let instance = Database() }
         return Static.instance
     }
     
