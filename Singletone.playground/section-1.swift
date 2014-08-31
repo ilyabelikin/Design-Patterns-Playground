@@ -25,7 +25,7 @@ class Singleton {
     
     var data = 0
     // TODO: Update when class constant will be implemented (not yet in beta5)
-    //class let instance = Singleton()
+    // class let instance = Singleton()
     
     // Using private struct instead
     class var sharedInstance: Singleton {
