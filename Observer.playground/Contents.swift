@@ -1,20 +1,14 @@
-/*
+// TODO: # Motivation
 
-TODO: # Motivation
+//: Real-world analogy is a newspaper subscription. This pattern is usually
+//: a part of MVC. View broadcasts UI events so that Controller can handle
+//: them appropriately.
+//: ### Definition
+//: The Observer pattern defines a one-to-many dependency between objects
+//: so that if one object changes state, all of it's dependent objects are notified and
+//: can be updated automatically.
 
-Real-world analogy is newspaper subscriprion. This pattern usually 
-a part of MVC. View broadcast UI events so that Controller can handle 
-them appropriately.
-
-# Definition
-
-The Observer pattern defines a one-to-many dependency between objects
-so that one object change state, all of it dependent are notified and
-can be updated automatically.
-
-*/
-
-// # Wether station example (basic design)
+//: ### Weather station example (basic design)
 
 protocol Observable {
     // TODO: It should be weak is not it?
@@ -25,7 +19,7 @@ protocol Observable {
     func notifyObservers ()
 }
 
-// This "class" means that this protocol only for classes and we need 
+// This "class" means that this protocol is only for classes and we need
 // that to be able to check identity of Observers in removeObserver
 protocol Observer : class {
     // FIXIT: in beta5, serviceKit terminated on desired declaration
@@ -46,7 +40,7 @@ class WetherStation : Observable {
    
     var mesures: Mesures = Mesures() {
         didSet {
-            println("\n### Updtae form Station ###\n")
+            print("\n### Updtae form Station ###\n")
             self.notifyObservers()
         }
     }
@@ -84,13 +78,12 @@ class CurrentConditionDisplay : Observer, Display {
     }
     
     func display() {
-        println("--- Current ---")
+        print("--- Current ---")
         if let temp = self.temperature {
-            println("Temeperature is \(temp)˚C")
+            print("Temeperature is \(temp)˚C")
         } else {
-            println("We have no idea what is goinig on outside.")
+            print("We have no idea what is goinig on outside.")
         }
-        println()
     }
     
     // TODO: Hmmm... I beilive I need a way to remove
@@ -99,15 +92,15 @@ class CurrentConditionDisplay : Observer, Display {
 }
 
 
-class AwersomeDisplay : Observer, Display {
+class AwesomeDisplay : Observer, Display {
     func update (updatedObject: AnyObject) {
         display()
     }
     
     func display() {
-        println("--- Awersomeness ---")
+        print("--- Awersomeness ---")
         // Sorry, just random stuff
-        println("Everything is awesome! Everything is cool if you live on the heap. Everything is awes-o-o-ome! While you l-i-i-i-nked.\n")
+        print("Everything is awesome! Everything is cool if you live on the heap. Everything is awes-o-o-ome! While you l-i-i-i-nked.\n")
     }
 }
 
@@ -140,14 +133,14 @@ class WetherStatisticDisplay : Observer, Display {
     }
     
     func display() {
-        println("--- Staticstics ---")
+        print("--- Staticstics ---")
         switch data.count {
             case 0:
-                println("Have no data to analyze.\n")
+                print("Have no data to analyze.\n")
             case 0..<3:
-                println("Need more measures.\n")
+                print("Need more measures.\n")
             default:
-                println("Avarage temperature is \(avarageTemperature())\n")
+                print("Avarage temperature is \(avarageTemperature())\n")
         }
     }
 }
@@ -155,7 +148,7 @@ class WetherStatisticDisplay : Observer, Display {
 let wetherStation = WetherStation()
 let current = CurrentConditionDisplay()
 let stat = WetherStatisticDisplay()
-let awesome = AwersomeDisplay()
+let awesome = AwesomeDisplay()
 
 current.display()
 stat.display()

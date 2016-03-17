@@ -1,7 +1,5 @@
-//
-// Gumballs machine exmaple when machine have no idea about it's own 
-// possible states.
-//
+//: Gumballs machine example when machine have no idea about it's own
+//: possible states.
 // TODO: Probably better to make all states a Singleton in this case?
 
 protocol QuarterMachine {
@@ -45,17 +43,17 @@ class SoldOutState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
-        println("No way. It sold out!")
+        print("No way. It sold out!")
     }
     
     override func ejectQuarter() {
         super.ejectQuarter()
-        println("No way. It sold out!")
+        print("No way. It sold out!")
     }
     
     override func turnCrank() {
         super.turnCrank()
-        println("Nothing happened. It sold out.")
+        print("Nothing happened. It sold out.")
     }
     
     override func despense() {
@@ -72,23 +70,23 @@ class NoQuarterState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
-        println("inserted.")
+        print("inserted.")
         machine.state = HasQuarterState(machine)
     }
     
     override func ejectQuarter() {
         super.ejectQuarter()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func turnCrank() {
         super.turnCrank()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func despense() {
         super.despense()
-        println("No way. Put you quarter inside first.")
+        print("No way. Put you quarter inside first.")
     }
 }
 
@@ -96,12 +94,12 @@ class HasQuarterState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
-        println("no way. There are quarter in place.")
+        print("no way. There are quarter in place.")
     }
     
     override func ejectQuarter() {
         super.ejectQuarter()
-        println("your quarter back!")
+        print("your quarter back!")
         machine.state = NoQuarterState(machine)
     }
     
@@ -120,22 +118,22 @@ class SoldState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func ejectQuarter() {
         super.ejectQuarter()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func turnCrank() {
         super.turnCrank()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func despense() {
         super.despense()
-        println("Gunball!")
+        print("Gunball!")
         machine.gunballs--
         
         if machine.gunballs <= 0 {
@@ -170,7 +168,7 @@ class GumballMachine : QuarterMachine {
     }
     
     func despense() {
-        println("Be good. Pay and use crank if you want a gumball")
+        print("Be good. Pay and use crank if you want a gumball")
     }
     
     func refilled() {
@@ -179,7 +177,7 @@ class GumballMachine : QuarterMachine {
     
     func refill(numberOfGumballs: Int) {
         self.gunballs  += numberOfGumballs
-        println("Just refill machine to \(self.gunballs) gunballs")
+        print("Just refill machine to \(self.gunballs) gunballs")
         refilled()
     }
 }

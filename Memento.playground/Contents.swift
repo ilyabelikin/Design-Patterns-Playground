@@ -1,21 +1,12 @@
-/*
-
-# Motivation
-
-Apparently, badly desire for an ability to undo object state without
-violate incapsulation.
-
-# Definition
-
-The Memento pattern capture and restore an object internal state
-without violating encapsulation.
-
-(In English Memento means an object that kept as a remider of a person
-or an event)
-
-*/
-
-// # Abstract basic example
+//: ### Motivation
+//:Apparently, badly desire for an ability to undo object state without
+//:violating incapsulation.
+//: ### Definition
+//: The Memento pattern captures and restores an object internal state
+//: without violating encapsulation.
+//: (In English Memento means an object that kept as a remider of a person
+//: or an event)
+//: ### Abstract basic example
 
 protocol Mementoable {
     func createMemento () -> Memento
@@ -26,7 +17,7 @@ protocol DocumentData {
     var content: String { get set }
 }
 
-// Object which state we care about, "originator"
+//: Object which state we care about, "originator"
 class Document : DocumentData, Mementoable {
     
     var content = ""
@@ -48,7 +39,7 @@ class Memento : DocumentData {
     }
 }
 
-// Object wich take care about originator state, "caretaker"
+//: Object wich take care about originator state, "caretaker"
 class Controller {
     
     var document: Document

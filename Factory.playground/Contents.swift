@@ -1,19 +1,14 @@
-/*
 
-TODO: # Motivation
+//TODO: # Motivation
 
-# Definition
-
-The Factory Method Pattern defines an interface for creating an object, 
-but lets subclasses decide which class to instantiate. Factory Method 
-lets a class defer instantiation to subclasses.
-
-*/
-
-// # Simple pizza factory example
+//: ### Definition
+//: The Factory Method Pattern defines an interface for creating an object,
+//: but lets subclasses decide which class to instantiate. Factory Method
+//: lets a class defer instantiation to subclasses.
+//: ### Simple pizza factory example
 
 class Pizza {
-    let name = String()
+    var name = String()
     
     enum Dough: String { case Thin = "thin", Thick = "thick" }
     var dough = Dough.Thin
@@ -22,19 +17,19 @@ class Pizza {
     var toppings = [String]()
     
     func prepare() {
-        println("Preparing \(name)")
+        print("Preparing \(name)")
     }
     
     func bake() {
-        println("Bake \(name): \(toppings) on \(dough.toRaw()) dough")
+        print("Bake \(name): \(toppings) on \(dough.rawValue) dough")
     }
     
     func cut() {
-        println("Cutting \(name)")
+        print("Cutting \(name)")
     }
     
     func box() {
-        println("Boxing \(name)")
+        print("Boxing \(name)")
     }
 }
 
@@ -95,16 +90,16 @@ class PizzaStore {
     }
     
     func orderPizza(type: String) {
-        println("You just ordered a \(type) pizza.")
+        print("You just ordered a \(type) pizza.")
         if let pizza = pizzaFactory.createPizza(type) {
-            println("Ok. Will be in 20 minutes...")
+            print("Ok. Will be in 20 minutes...")
             pizza.prepare()
             pizza.bake()
             pizza.cut()
             pizza.box()
-            println("Here you are: \(pizza.name)\n")
+            print("Here you are: \(pizza.name)\n")
         } else {
-            println("Sorry, we have no \(type)\n")
+            print("Sorry, we have no \(type)\n")
         }
     }
 }
