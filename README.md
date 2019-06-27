@@ -27,12 +27,9 @@ The Visitor, for instance, is just a class wrapper for a function with some accu
 
 **Book:** [Head First Design Patterns](http://shop.oreilly.com/product/9780596007126.do)
 
-TODO: Port all examples covered in the book (authors kindly argeed)
-
 **Book:** [Functional Programming in Swift](http://www.objc.io/books/#early-access)
 
-TODO: Understand what it really mean for mankind
 
 # More Playgrounds
 
-[Design Patterns implemented in Swift](https://github.com/ochococo/Design-Patterns-In-Swift) – another collection of patterns implementations. Without unrelated comments and awful spelling.
+[Design Patterns implemented in Swift](https://github.com/ochococo/Design-Patterns-In-Swift) – a better collection.
