@@ -1,14 +1,14 @@
-# Swift design playgrounds
+# Design Patterns Playgrounds in Swift
 
 These are small examples I made in Swift playgrounds while studying common patterns in software development.
 
-# Structure
+# Playgrounds names
 
 Playgrounds with just pattern name are cononical implementations form the course. Some have additional versions like State Machine - Native (see below).
 
 [State Machine](https://github.com/ihrd/Design-Patterns-Playground/blob/master/State%20Machine.playground/section-1.swift) and [State Machine - Native](https://github.com/ihrd/Design-Patterns-Playground/blob/master/State%20Machine%20-%20Native.playground/section-1.swift) are best examples so far.
 
-# Materials
+# Reference materials
 
 **Course:** [Object-Oriented Design with Simon Allardice](http://www.lynda.com/Programming-tutorials/Foundations-of-Programming-Object-Oriented-Design/96949-2.html)
 
