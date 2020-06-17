@@ -1,7 +1,5 @@
-//
-// Gumballs machine example using enum to manage states.
-// I believe this approach a little more native in Swift.
-//
+//: Gumballs machine example using enum to manage states.
+//: I believe this approach a little more native in Swift.
 
 protocol QuarterMachine {
     func insertQuarter ()
@@ -70,17 +68,17 @@ class SoldOutState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
-        println("No way. It sold out!")
+        print("No way. It sold out!")
     }
     
     override func ejectQuarter() {
         super.ejectQuarter()
-        println("No way. It sold out!")
+        print("No way. It sold out!")
     }
     
     override func turnCrank() {
         super.turnCrank()
-        println("Nothing happened. It sold out.")
+        print("Nothing happened. It sold out.")
     }
     
     override func despense() {
@@ -93,23 +91,23 @@ class NoQuarterState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
-        println("inserted.")
+        print("inserted.")
         machine.state = .HasQuarter(machine)
     }
     
     override func ejectQuarter() {
         super.ejectQuarter()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func turnCrank() {
         super.turnCrank()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func despense() {
         super.despense()
-        println("No way. Put you quarter inside first.")
+        print("No way. Put you quarter inside first.")
     }
 }
 
@@ -117,12 +115,12 @@ class HasQuarterState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
-        println("no way. There are quarter in place.")
+        print("no way. There are quarter in place.")
     }
     
     override func ejectQuarter() {
         super.ejectQuarter()
-        println("your quarter back!")
+        print("your quarter back!")
         machine.state = .NoQuarter(machine)
     }
     
@@ -141,26 +139,26 @@ class SoldState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func ejectQuarter() {
         super.ejectQuarter()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func turnCrank() {
         super.turnCrank()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func despense() {
         super.despense()
-        println("Gunball!")
+        print("Gunball!")
         machine.state = .NoQuarter(machine)
         machine.gunballs--
         if machine.gunballs <= 0 {
-            println("You are the last costumer, turn crank again to get extra!")
+            print("You are the last costumer, turn crank again to get extra!")
             machine.state = .LastExtra(machine)
         }
     }
@@ -170,12 +168,12 @@ class LastExtraState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
-        println("no need! Just turn the crank.")
+        print("no need! Just turn the crank.")
     }
     
     override func ejectQuarter() {
         super.ejectQuarter()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func turnCrank() {
@@ -185,7 +183,7 @@ class LastExtraState : GumballMachineState {
     
     override func despense() {
         super.despense()
-        println("a Toy for you!")
+        print("a Toy for you!")
         machine.state = .SoldOut(machine)
     }
 }
@@ -215,7 +213,7 @@ class GumballMachine : QuarterMachine {
     }
     
     func despense() {
-        println("Be good. Pay and use crank if you want a gumball")
+        print("Be good. Pay and use crank if you want a gumball")
     }
     
     func refill(numberOfGumballs: Int) {

@@ -1,20 +1,18 @@
-/*
+//: ### Motivation
+// TODO: Explain sad truth about overpriced coffee
 
-# Motivation
+//O: Classes should be open for extension, but close for modification.
 
-TODO: Explain sad truth about overpriced coffee
+//: ### Definition
+//: The Decorator pattern attaches additional responsibilities to an object
+//: dynamically. Provide a flexible alternative to subclassing for extending
+//: functionality.
 
-O: Classes should be open for extension, but close for modification.
+//: ### Coffee shop example
 
-# Definition
-
-The Decorator pattern attaches additional responsibilities to an object
-dynamically. Provide a flexible alternative to subclassing for extending
-functionality.
-
-*/
-
-// # Coffee shop example
+protocol Printable {
+    var description: String { get }
+}
 
 protocol Beverage : Printable {
     func cost() -> Double
@@ -48,7 +46,7 @@ class CondimentDecorator : Beverage {
     }
     
     var description: String {
-        fatalError("Descriotion should be overrided")
+        fatalError("Description should be overriden")
         return beverage.description
     }
 }
@@ -73,13 +71,13 @@ class Mocha : CondimentDecorator {
     }
 }
 
-println("Wellcome to Coffeshop")
+print("Welcome to Coffeshop")
 
 let espresso = Espresso()
-println("Your \(espresso.description), sir. It is \(espresso.cost()) HKD")
+print("Your \(espresso.description), sir. It is \(espresso.cost()) HKD")
 
 // They all decopled and dont mess with each other. Isn't it nice?
 let mix = Mocha(Milk(HouseBlend()))
 
-println("Your \(mix.description), sir. It is \(mix.cost()) HKD")
+print("Your \(mix.description), sir. It is \(mix.cost()) HKD")
 

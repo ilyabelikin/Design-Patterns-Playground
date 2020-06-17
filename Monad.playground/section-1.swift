@@ -2,8 +2,8 @@
 
 # Motivation
 
-It looks like anyone who expirienced in functional programming feels the
-urge need to implement something like bind (>>=) Haskel operator in Swift 
+It looks like anyone who is experienced in functional programming feels the
+urgent need to implement something like bind (>>=) Haskel operator in Swift
 and see a Monad type in an Optional.
 
 "A very common problem when dealing with optionals is dealing with multiple
@@ -12,8 +12,8 @@ very bad—especially since most of the time, the recovery from any one of
 them failing is the same."
 http://nomothetis.svbtle.com/the-culmination-final-part
 
-Bind opperator provides a great utility to orginize sequences of functions
-with similar behaivor. Extremly popular example to date is JSON parsing.
+Bind operator provides a great utility to organize sequences of functions
+with similar behavior. Extremely popular example to date is JSON parsing.
 
 # Definition
 
@@ -23,7 +23,7 @@ a cool way.
 
 (Can you help me with a better definition?)
 
-Modas is class of types, which have one type parameter, and which follow
+Monad is a class of types, which have one type parameter, and which follow
 three Monads laws:
 
 - There exists a function, by convention called lift: A -> M<A>, which

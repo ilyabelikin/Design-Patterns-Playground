@@ -1,0 +1,28 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C9A7A583FECF23693BFD6F172B6A118D3CD8D16D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C9A7A583FECF23693BFD6F172B6A118D3CD8D16D" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1B7F5FAC-20E5-4B82-8EC4-5D35AB0FC7F6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C9A7A583FECF23693BFD6F172B6A118D3CD8D16D" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Singletone",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Singletone.playground",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ihrd\/Design-Patterns-Playground.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C9A7A583FECF23693BFD6F172B6A118D3CD8D16D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ihrd\/Design-Patterns-Playground.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C9A7A583FECF23693BFD6F172B6A118D3CD8D16D"
+    }
+  ]
+}

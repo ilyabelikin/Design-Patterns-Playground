@@ -1,30 +1,24 @@
-/*
+//: ### Motivation
+//: "A truth that all programmers know: state management is why we get paid."
+//: by Alexandros Salazar
+//: Read whole post: http://nomothetis.svbtle.com/immutable-swift
+//:
+//: Any program manages states and, ideally, should be exhaustive. In other
+//: words a program should have a correct behavior for any combination of states.
+//: This way we will have bug-free software. So... we know it is not the case.
 
-# Motivation
-
-"A truth that all programmers know: state management is why we get paid."
-by Alexandros Salazar
-Read whole post: http://nomothetis.svbtle.com/immutable-swift
-
-Any program manage states and, ideally, should be exhaustive. In other
-words a program should have a correct behavior for any combination of states.
-This way we will have bug-free software. So... we now it is not the case.
-
-In practice it is quite usual when program manage only subset of possible
-states and even do not express awareness about possible states of underling
-object in explicit way. It is just in bunches of if and else statements all
-over a source code.
-
-# Definition
-
-The State Pattern allows an object to alert its behavior when its internal 
-state change. The object will appear to change its class.
-
-*/
-
-// # Gumball machine example
-
-// ## Tidilly coupled approach
+//: In practice it is quite usual when program manages only subset of possible
+//: states and even do not express awareness about possible states of underling
+//: object in explicit way. It is just in bunch of if and else statements all
+//: over a source code.
+//:
+//: ### Definition
+//:
+//: The State Pattern allows an object to alert its behavior when its internal
+//: state change. The object will appear to change its class.
+//:
+//: ### Gumball machine example
+//: Tidilly coupled approach
 
 class GodGunballMachnie {
     
@@ -36,14 +30,14 @@ class GodGunballMachnie {
         
         switch state {
             case .SoldOut:
-                println("No way. It sold out!")
+                print("No way. It sold out!")
             case .NoQuarter:
                 self.state = .HasQuarter
-                println("inserted.")
+                print("inserted.")
             case .HasQuarter:
-                println("no way. There are quarter in place.")
+                print("no way. There are quarter in place.")
             case .Sold:
-                println("no way.")
+                print("no way.")
         }
     }
     
@@ -53,9 +47,8 @@ class GodGunballMachnie {
     // and modify each switch statement.
 }
 
-// ## Decoupled approach
-
-// Interface for machine and all states classes
+//: ### Decoupled approach
+//: Interface for machine and all states classes
 protocol QuarterMachine {
     func insertQuarter ()
     func ejectQuarter ()
@@ -63,7 +56,7 @@ protocol QuarterMachine {
     func despense ()
 }
 
-// Base class for states of machine
+//: Base class for states of machine
 class GumballMachineState : QuarterMachine {
     
     let machine: GumballMachine
@@ -93,22 +86,22 @@ class SoldOutState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
-        // In reality, wich I pretend to model, it is complitly
-        // okay to put Quarter in sold out machine. I belive to
+        // In reality, which I pretend to model, it is completely
+        // okay to put Quarter in sold out machine. I believe to
         // model it better I can use two different objects with
         // independent states for each gunballs pool with crank 
         // and quarters slot.
-        println("No way. It sold out!")
+        print("No way. It sold out!")
     }
     
     override func ejectQuarter() {
         super.ejectQuarter()
-        println("No way. It sold out!")
+        print("No way. It sold out!")
     }
     
     override func turnCrank() {
         super.turnCrank()
-        println("Nothing happened. It sold out.")
+        print("Nothing happened. It sold out.")
     }
     
     override func despense() {
@@ -121,23 +114,23 @@ class NoQuarterState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
-        println("inserted.")
+        print("inserted.")
         machine.state = machine.hasQuarterState
     }
     
     override func ejectQuarter() {
         super.ejectQuarter()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func turnCrank() {
         super.turnCrank()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func despense() {
         super.despense()
-        println("No way. Put you quarter inside first.")
+        print("No way. Put you quarter inside first.")
     }
 }
 
@@ -145,12 +138,12 @@ class HasQuarterState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
-        println("no way. There are quarter in place.")
+        print("no way. There are quarter in place.")
     }
     
     override func ejectQuarter() {
         super.ejectQuarter()
-        println("your quarter back!")
+        print("your quarter back!")
         machine.state = machine.noQuarterState
     }
     
@@ -169,22 +162,22 @@ class SoldState : GumballMachineState {
     
     override func insertQuarter() {
         super.insertQuarter()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func ejectQuarter() {
         super.ejectQuarter()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func turnCrank() {
         super.turnCrank()
-        println("nothing.")
+        print("nothing.")
     }
     
     override func despense() {
         super.despense()
-        println("Gunball!")
+        print("Gunball!")
         machine.state = machine.noQuarterState
         machine.gunballs--
         if machine.gunballs <= 0 {
@@ -231,7 +224,7 @@ class GumballMachine : QuarterMachine {
     }
     
     func despense() {
-        println("Be good. Pay and use crank if you want a gumball")
+        print("Be good. Pay and use crank if you want a gumball")
     }
     
     func refill(numberOfGumballs: Int) {
@@ -240,7 +233,7 @@ class GumballMachine : QuarterMachine {
     }
 }
 
-// Click on plus next to return value to see console in assistant editor
+//: Click on plus next to return value to see console in assistant editor
 let machine = GumballMachine(numberOfGunballs: 10)
 
 machine.despense()
